@@ -29,7 +29,7 @@ namespace BluePrism.WordLadder.Test
         public void CreateWordDictionary_ReturnsWordDictionaryClasseImplementationOfIWordDictionary()
         {
             string path = Directory.GetCurrentDirectory();
-            var fileName = $"{path}//wordDict.txt";
+            var fileName = $"{path}//content//wordDict.txt";
             var result = Factory.CreateWordDictionary(fileName);
 
             result.Should().BeOfType<WordDictionary>().And.BeAssignableTo<IWordDictionary>();

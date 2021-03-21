@@ -8,14 +8,12 @@ namespace BluePrism.WordLadder.Test
 
     public class WordDictionaryTests
     {
-
-        private readonly string _path;
         private readonly string _realFileName;
 
         public WordDictionaryTests()
         {
-            _path = Directory.GetCurrentDirectory();
-            _realFileName = $"{_path}//wordDict.txt";
+            var path = Directory.GetCurrentDirectory();
+            _realFileName = $"{path}//content//wordDict.txt";
         }
 
         private IWordDictionary CreateServiceUnderTest(string fileName)
@@ -33,7 +31,6 @@ namespace BluePrism.WordLadder.Test
             Assert.Throws<FileNotFoundException>(() => new WordDictionary(fileName));
         }
 
-
         [Fact]
         public void GetListOfWords_WhenFileExists_ReturnsListOfWords()
         {
@@ -46,6 +43,5 @@ namespace BluePrism.WordLadder.Test
             // Assert
             result.Keys.Should().NotBeNull().And.NotBeEmpty();
         }
-
     }
 }

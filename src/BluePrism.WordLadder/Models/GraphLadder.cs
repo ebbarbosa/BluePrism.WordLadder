@@ -8,13 +8,13 @@ namespace BluePrism.WordLadder.Models
     public class GraphLadder
     {
 
-        public Word root;
-        public Word target = null;
+        private readonly Word _root;
+        private Word _target = null;
         private readonly IDictionary<string, bool> _dict;
 
         public GraphLadder(string source, IDictionary<string, bool> dict)
         {
-            root = new Word(source);
+            _root = new Word(source);
             _dict = dict;
         }
 
@@ -35,7 +35,7 @@ namespace BluePrism.WordLadder.Models
                     queue.Enqueue(newWordFound);
                     if (word.Equals(targetWord))
                     {
-                        target = newWordFound;
+                        _target = newWordFound;
                         return;
                     }
                 }
@@ -45,26 +45,25 @@ namespace BluePrism.WordLadder.Models
         public IList<string> Solve(string targetWord)
         {
             var queue = new Queue<Word>();
-            queue.Enqueue(root);
+            queue.Enqueue(_root);
 
             while (queue.Count > 0)
             {
                 Word newWord = queue.Dequeue();
                 GenerateChildren(newWord, targetWord, queue);
-                if (target != null)
+                if (_target != null)
                 {
                     break;
                 }
             }
 
-            if (target == null)
+            if (_target == null)
             {
                 Console.WriteLine("Ladder not found");
                 return Enumerable.Empty<string>().ToList();
             }
 
-            return target.ToList();
+            return _target.ToList();
         }
-
     }
 }
