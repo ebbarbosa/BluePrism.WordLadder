@@ -1,14 +1,12 @@
-using System;
-using System.IO;
-using System.Text;
 using System.Collections.Generic;
+using System.IO;
 
 namespace BluePrism.WordLadder.Infrastructure
 {
 
     public class WordDictionary : IWordDictionary
     {
-        private IDictionary<string, bool> _listOfWords;
+        private readonly IDictionary<string, bool> _listOfWords;
 
         public WordDictionary(string fileName)
         {

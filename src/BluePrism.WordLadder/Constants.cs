@@ -3,7 +3,6 @@ namespace BluePrism.WordLadder
 
     public class Constants
     {
-        public static int NumCharsToDiffer = 1;
-
+        public const int NumCharsToDiffer = 1;
     }
 }

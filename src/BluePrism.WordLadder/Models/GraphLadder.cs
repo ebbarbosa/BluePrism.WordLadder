@@ -10,20 +10,12 @@ namespace BluePrism.WordLadder.Models
 
         public Word root;
         public Word target = null;
-        private IDictionary<string, bool> _dict;
+        private readonly IDictionary<string, bool> _dict;
 
         public GraphLadder(string source, IDictionary<string, bool> dict)
         {
             root = new Word(source);
             _dict = dict;
-        }
-
-        private bool IsSimilar(string a, string b)
-        {
-            if (a.Length != b.Length)
-                return false;
-
-            return a.IsSimilarBy(b, Constants.NumCharsToDiffer);
         }
 
         private void GenerateChildren(Word parent, string targetWord, Queue<Word> queue)
@@ -35,7 +27,7 @@ namespace BluePrism.WordLadder.Models
                 if (_dict[word])
                     continue;
 
-                if (IsSimilar(word, parentWord))
+                if (word.IsSimilarBy(parentWord, Constants.NumCharsToDiffer))
                 {
                     _dict[word] = true;
                     Word newWordFound = new Word(word, parent);

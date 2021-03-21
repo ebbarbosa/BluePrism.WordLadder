@@ -9,7 +9,7 @@ namespace BluePrism.WordLadder.Test
 
     public class WordLadderSolverTests
     {
-        IWordLadderSolver _sut;
+        readonly IWordLadderSolver _sut;
 
         public WordLadderSolverTests()
         {

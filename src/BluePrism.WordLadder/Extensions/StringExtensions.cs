@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Linq;
 
 namespace BluePrism.WordLadder.Extensions
@@ -18,13 +16,13 @@ namespace BluePrism.WordLadder.Extensions
         /// <returns></returns>
         public static bool IsSimilarBy(this string self, string subject, int numCharsToDiffer)
         {
-
             if (string.IsNullOrWhiteSpace(self)) return false;
             if (string.IsNullOrWhiteSpace(subject)) return false;
 
-            int count = 0;
+            if (self.Length != subject.Length)
+                return false;
 
-            count = self.ToCharArray().Intersect(subject.ToCharArray()).Count();
+            var count = self.ToCharArray().Intersect(subject.ToCharArray()).Count();
 
             return self.Length - count == numCharsToDiffer;
         }
