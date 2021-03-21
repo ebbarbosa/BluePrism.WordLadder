@@ -1,7 +1,7 @@
-using System;
-using System.Linq;
-using System.Collections.Generic;
 using BluePrism.WordLadder.Extensions;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace BluePrism.WordLadder.Models
 {

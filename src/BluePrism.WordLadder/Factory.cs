@@ -1,5 +1,5 @@
-using BluePrism.WordLadder.Models;
 using BluePrism.WordLadder.Infrastructure;
+using BluePrism.WordLadder.Models;
 
 namespace BluePrism.WordLadder
 {
@@ -14,6 +14,11 @@ namespace BluePrism.WordLadder
         public static IWordDictionary CreateWordDictionary(string fileName)
         {
             return new WordDictionary(fileName);
+        }
+
+        public static IFileWrapper CreateFileWrapper()
+        {
+            return new FileWrapper();
         }
     }
 }

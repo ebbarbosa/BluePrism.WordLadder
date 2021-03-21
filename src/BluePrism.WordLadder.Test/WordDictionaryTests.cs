@@ -1,30 +1,47 @@
-using Xunit;
-using FluentAssertions;
-using System;
-using System.IO;
 using BluePrism.WordLadder.Infrastructure;
+using FluentAssertions;
+using System.IO;
+using Xunit;
 
 namespace BluePrism.WordLadder.Test
 {
 
     public class WordDictionaryTests
     {
-    
-        private WordDictionary _sut;
+
+        private readonly string _path;
+        private readonly string _realFileName;
 
         public WordDictionaryTests()
         {
-            string path = Directory.GetCurrentDirectory();
-            var fileName = $"{path}//wordDict.txt";
-
-            _sut = new WordDictionary(fileName);
+            _path = Directory.GetCurrentDirectory();
+            _realFileName = $"{_path}//wordDict.txt";
         }
+
+        private IWordDictionary CreateServiceUnderTest(string fileName)
+        {
+            return new WordDictionary(fileName);
+        }
+
+        [Fact]
+        public void Constructor_WhenFileDoesNotExist_ThrowsFileNotFoundException()
+        {
+            // Arrange& 
+            string fileName = "/throwerror.txt";
+
+            // Act & Assert
+            Assert.Throws<FileNotFoundException>(() => new WordDictionary(fileName));
+        }
+
 
         [Fact]
         public void GetListOfWords_WhenFileExists_ReturnsListOfWords()
         {
+            // Arrange 
+            var sut = CreateServiceUnderTest(_realFileName);
+
             // Act
-            var result = _sut.GetListOfWords();
+            var result = sut.GetListOfWords();
 
             // Assert
             result.Keys.Should().NotBeNull().And.NotBeEmpty();

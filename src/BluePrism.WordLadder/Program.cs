@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 
 namespace BluePrism.WordLadder
 {
@@ -8,25 +7,39 @@ namespace BluePrism.WordLadder
     {
         static void Main(string[] args)
         {
+            // todo: create a model and a validator for the args, this should log the exception and a help response to the console.
+            /*
+             * something like:
+             *
+             * var argsBuilder = Factory.CreateArgsBuilder();
+             *
+             * var args = argsBuilder.AWord(args[0]).AWord(args[1]).AFilePath(args[2]).AFilePath(args[3])
+             *  .Build()
+             *  .LogsWith(Console.WriteLine)
+             *  .Validate()
+             * 
+             */
 
-            var firstWord = args[0];
-            var lastWord = args[1];
-            var wordDicFilePath = args[2];
-            var resultTxtFilePath = args[3];
+            string firstWord = args[0];
+            string lastWord = args[1];
+            string wordDicFilePath = args[2];
+            string resultTxtFilePath = args[3];
 
             var wordDic = Factory.CreateWordDictionary(wordDicFilePath);
-            
+
             var wordladderSolver = Factory.CreateWordLadderSolver();
             var result = wordladderSolver.SolveLadder(firstWord, lastWord, wordDic.GetListOfWords());
 
             WriteResultToTxtFile(result, resultTxtFilePath);
-            
+
             Console.Write("Press <Enter> to exit... ");
-            while (Console.ReadKey().Key != ConsoleKey.Enter) {}
+            while (Console.ReadKey().Key != ConsoleKey.Enter) { }
         }
 
-        static void WriteResultToTxtFile(IList<string> wordLadder, string filePath){
-            Console.WriteLine(wordLadder);
+        static void WriteResultToTxtFile(IList<string> wordLadder, string filePath)
+        {
+            var fileWrapper = Factory.CreateFileWrapper();
+            fileWrapper.Write(wordLadder, filePath);
         }
     }
 }

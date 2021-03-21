@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26124.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31019.35
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BluePrism.WordLadder", "BluePrism.WordLadder\BluePrism.WordLadder.csproj", "{FC3F258C-DFAB-4BB8-AAE2-C900C43C7760}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BluePrism.WordLadder", "BluePrism.WordLadder\BluePrism.WordLadder.csproj", "{FC3F258C-DFAB-4BB8-AAE2-C900C43C7760}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BluePrism.WordLadder.Test", "BluePrism.WordLadder.Test\BluePrism.WordLadder.Test.csproj", "{1BAE0EA6-3E62-49D4-85AD-0BFE1C8C7025}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BluePrism.WordLadder.Test", "BluePrism.WordLadder.Test\BluePrism.WordLadder.Test.csproj", "{1BAE0EA6-3E62-49D4-85AD-0BFE1C8C7025}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BluePrism.WordLadder.Infrastructure", "BluePrism.WordLadder.Infrastructure\BluePrism.WordLadder.Infrastructure.csproj", "{507402AC-91D4-4A2E-811F-A652A8D2691B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{FC3F258C-DFAB-4BB8-AAE2-C900C43C7760}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -44,5 +43,23 @@ Global
 		{1BAE0EA6-3E62-49D4-85AD-0BFE1C8C7025}.Release|x64.Build.0 = Release|Any CPU
 		{1BAE0EA6-3E62-49D4-85AD-0BFE1C8C7025}.Release|x86.ActiveCfg = Release|Any CPU
 		{1BAE0EA6-3E62-49D4-85AD-0BFE1C8C7025}.Release|x86.Build.0 = Release|Any CPU
+		{507402AC-91D4-4A2E-811F-A652A8D2691B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{507402AC-91D4-4A2E-811F-A652A8D2691B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{507402AC-91D4-4A2E-811F-A652A8D2691B}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{507402AC-91D4-4A2E-811F-A652A8D2691B}.Debug|x64.Build.0 = Debug|Any CPU
+		{507402AC-91D4-4A2E-811F-A652A8D2691B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{507402AC-91D4-4A2E-811F-A652A8D2691B}.Debug|x86.Build.0 = Debug|Any CPU
+		{507402AC-91D4-4A2E-811F-A652A8D2691B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{507402AC-91D4-4A2E-811F-A652A8D2691B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{507402AC-91D4-4A2E-811F-A652A8D2691B}.Release|x64.ActiveCfg = Release|Any CPU
+		{507402AC-91D4-4A2E-811F-A652A8D2691B}.Release|x64.Build.0 = Release|Any CPU
+		{507402AC-91D4-4A2E-811F-A652A8D2691B}.Release|x86.ActiveCfg = Release|Any CPU
+		{507402AC-91D4-4A2E-811F-A652A8D2691B}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {01EC8D6B-492D-427C-8DB5-587D36024D9F}
 	EndGlobalSection
 EndGlobal
