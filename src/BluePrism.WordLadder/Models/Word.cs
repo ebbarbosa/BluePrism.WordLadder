@@ -1,11 +1,9 @@
-using System;
 using System.Collections.Generic;
 
 namespace BluePrism.WordLadder.Models
 {
     public class Word
     {
-
         public string WordKey { get; private set; }
         public Word ParentWord { get; private set; }
 
@@ -15,8 +13,6 @@ namespace BluePrism.WordLadder.Models
             WordKey = wordKey;
             ParentWord = parentWord;
         }
-
-
     }
 
     public static class WordExtensions

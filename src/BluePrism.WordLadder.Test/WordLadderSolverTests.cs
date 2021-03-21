@@ -156,5 +156,80 @@ namespace BluePrism.WordLadder.Test
             // Assert
             result.Should().NotBeEmpty().And.ContainInOrder(expectedResult);
         }
+
+        [Fact]
+        public void SolveLadder_WhenWordDictionary_HasOnlyOnePathToTarget_ReturnsThePath()
+        {
+            // Arrange
+            var firstWord = "AAAA";
+            var targetWord = "AADE";
+
+            var wordDic = new Dictionary<string, bool>(){
+                {"AAAA", false },
+                {"ABAA", false },
+                {"BBAA", false },
+                {"BBBA", false },
+                {"BBAC", false },
+                {"ABXA", false },
+                {"AAXA", false },
+                {"ACBA", false },
+                {"AABA", false },
+                {"ABBA", false },
+                {"ABBB", false },
+                {"ABCC", false },
+                {"ACCA", false },
+                {"ACAE", false },
+                {"AAED", false },
+                {"ADDE", false },
+                //{"AAAE", false }, -- this will be used in the next test to prove the shortest path is returned.
+                {"AADE", false }
+            };
+            var expectedResult = new List<string>()
+                {firstWord, "ABAA", "ACBA", "ACAE", targetWord};
+
+            // Act
+            var result = _sut.SolveLadder(firstWord, targetWord, wordDic);
+
+            // Assert
+            result.Should().NotBeEmpty().And.ContainInOrder(expectedResult);
+        }
+
+        [Fact]
+        public void SolveLadder_WhenWordDictionary_HasTheTwoPathsToTarget_ReturnsTheShortestPath()
+        {
+            // Arrange
+            var firstWord = "AAAA";
+            var targetWord = "AADE";
+
+            var wordDic = new Dictionary<string, bool>(){
+                {"AAAA", false },
+                {"ABAA", false },
+                {"BBAA", false },
+                {"BBBA", false },
+                {"BBAC", false },
+                {"ABXA", false },
+                {"AAXA", false },
+                {"ACBA", false },
+                {"AABA", false },
+                {"ABBA", false },
+                {"ABBB", false },
+                {"ABCC", false },
+                {"ACCA", false },
+                {"ACAE", false },
+                {"AAED", false },
+                {"ADDE", false },
+                {"AAAE", false },
+                {"AADE", false }
+            };
+            var expectedResult = new List<string>() {
+                firstWord, "AAAE", targetWord
+            };
+
+            // Act
+            var result = _sut.SolveLadder(firstWord, targetWord, wordDic);
+
+            // Assert
+            result.Should().NotBeEmpty().And.ContainInOrder(expectedResult);
+        }
     }
 }

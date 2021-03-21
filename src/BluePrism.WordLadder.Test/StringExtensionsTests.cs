@@ -1,5 +1,4 @@
-using BluePrism.WordLadder.Extensions;
-using System;
+using BluePrism.WordLadder.Models.Extensions;
 using Xunit;
 
 namespace BluePrism.WordLadder.Test
@@ -12,7 +11,7 @@ namespace BluePrism.WordLadder.Test
             string sut = null;
             var subject = "KART";
 
-            var result = sut.IsSimilarBy(subject, Constants.NumCharsToDiffer);
+            var result = sut.IsDifferentOnlyBy(subject, Constants.NumCharsToDiffer);
 
             Assert.False(result);
         }
@@ -23,7 +22,7 @@ namespace BluePrism.WordLadder.Test
             string sut = string.Empty;
             var subject = "KART";
 
-            var result = sut.IsSimilarBy(subject, Constants.NumCharsToDiffer);
+            var result = sut.IsDifferentOnlyBy(subject, Constants.NumCharsToDiffer);
 
             Assert.False(result);
         }
@@ -34,7 +33,7 @@ namespace BluePrism.WordLadder.Test
             string sut = "";
             var subject = "KART";
 
-            var result = sut.IsSimilarBy(subject, Constants.NumCharsToDiffer);
+            var result = sut.IsDifferentOnlyBy(subject, Constants.NumCharsToDiffer);
 
             Assert.False(result);
         }
@@ -45,7 +44,7 @@ namespace BluePrism.WordLadder.Test
             string sut = "TEST";
             string subject = null;
 
-            var result = sut.IsSimilarBy(subject, Constants.NumCharsToDiffer);
+            var result = sut.IsDifferentOnlyBy(subject, Constants.NumCharsToDiffer);
 
             Assert.False(result);
         }
@@ -56,7 +55,7 @@ namespace BluePrism.WordLadder.Test
             string sut = "TESTING";
             var subject = string.Empty;
 
-            var result = sut.IsSimilarBy(subject, Constants.NumCharsToDiffer);
+            var result = sut.IsDifferentOnlyBy(subject, Constants.NumCharsToDiffer);
 
             Assert.False(result);
         }
@@ -67,18 +66,25 @@ namespace BluePrism.WordLadder.Test
             string sut = "TESTING";
             var subject = "";
 
-            var result = sut.IsSimilarBy(subject, Constants.NumCharsToDiffer);
+            var result = sut.IsDifferentOnlyBy(subject, Constants.NumCharsToDiffer);
 
             Assert.False(result);
         }
 
-        [Fact]
-        public void IsSimilarBy_WhenWordsDifferByMoreThanOneChar_ReturnsFalse()
+        [Theory]
+        [InlineData("KART", "DARE")]
+        [InlineData("HBRD", "DARY")]
+        [InlineData("HACD", "HARY")]
+        [InlineData("LIDA", "OILY")]
+        [InlineData("AXDA", "XABY")]
+        [InlineData("AAAX", "ZAAY")]
+        [InlineData("DDDZ", "ADDY")]
+        [InlineData("DDDA", "BDDY")]
+        [InlineData("DDXZ", "DDDY")]
+        [InlineData("DDDZ", "DXDY")]
+        public void IsSimilarBy_WhenWordsDifferByMoreThanOneChar_ReturnsFalse(string sut, string subject)
         {
-            var sut = "HARD";
-            var subject = "KART";
-
-            var result = sut.IsSimilarBy(subject, 1);
+            var result = sut.IsDifferentOnlyBy(subject, 1);
 
             Assert.False(result);
         }
@@ -87,11 +93,30 @@ namespace BluePrism.WordLadder.Test
         [InlineData("HARD", "DARE")]
         [InlineData("HARD", "HARE")]
         [InlineData("LISO", "OILO")]
-        public void IsSimilarBy_WhenWordsDifferByOneChar_ReturnsTrue(String sut, string subject)
+        [InlineData("AXXA", "XAAZ")]
+        [InlineData("AAAX", "ZAAA")]
+        [InlineData("DDDZ", "ADDD")]
+        [InlineData("DDDZ", "DDBD")]
+        [InlineData("DDDZ", "DDDX")]
+        [InlineData("DDDZ", "DXDD")]
+        public void IsSimilarBy_WhenWordsDifferByOneChar_ReturnsTrue(string sut, string subject)
         {
-            var result = sut.IsSimilarBy(subject, 1);
+            var result = sut.IsDifferentOnlyBy(subject, 1);
 
             Assert.True(result);
+        }
+
+        [Theory]
+        [InlineData("ABCD", "DCBA")]
+        [InlineData("XDDD", "DDDX")]
+        [InlineData("DDDZ", "DZDD")]
+        [InlineData("AAAB", "AABA")]
+        [InlineData("AABA", "ABAA")]
+        public void IsDifferentOnlyBy_GivenAnagramsMakeThePathLonger_ReturnsFalse(string sut, string subject)
+        {
+            var result = sut.IsDifferentOnlyBy(subject, 1);
+
+            Assert.False(result);
         }
     }
 }
