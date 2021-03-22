@@ -25,7 +25,7 @@ namespace BluePrism.WordLadder
             string wordDicFilePath = args[2];
             string resultTxtFilePath = args[3];
 
-            var wordDic = Factory.CreateWordDictionary(wordDicFilePath);
+            var wordDic = Factory.CreateWordDictionary(wordDicFilePath, firstWord);
 
             var wordladderSolver = Factory.CreateWordLadderSolver();
             var result = wordladderSolver.SolveLadder(firstWord, lastWord, wordDic.GetListOfWords());

@@ -6,7 +6,7 @@ namespace BluePrism.WordLadder.Models
     {
         IList<string> SolveLadder(string firstWord,
                                   string targetWord,
-                                  IDictionary<string, bool> wordDictionary);
+                                  HashSet<string> listOfWord);
     }
 
 }

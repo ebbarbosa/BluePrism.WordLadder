@@ -1,5 +1,6 @@
 using BluePrism.WordLadder.Models.Extensions;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -25,10 +26,10 @@ namespace BluePrism.WordLadder.Models
 
         private IList<string> _result;
 
-        public IList<string> SolveLadder(string firstWord, string targetWord, IDictionary<string, bool> wordDictionary)
+        public IList<string> SolveLadder(string firstWord, string targetWord, HashSet<string> listOfWord)
         {
             _root = new Word(targetWord);
-            _dict = wordDictionary;
+            _dict = listOfWord.ToDictionary(key => key, _ => false);
 
             Stopwatch sw = new Stopwatch();
             sw.Start();
@@ -55,34 +56,32 @@ namespace BluePrism.WordLadder.Models
             while (queue.Count > 0)
             {
                 Word newWord = queue.Dequeue();
-                GenerateChildren(newWord, firstWord, queue);
+
+                string parentWord = newWord.WordKey;
+                var lstWords = _dict;
+                foreach (string word in lstWords.Keys)
+                {
+                    if (_dict[word])
+                        continue;
+
+                    if (word.IsDifferentOnlyBy(parentWord, Constants.NumCharsToDiffer))
+                    {
+                        _dict[word] = true;
+
+                        Word newWordFound = new Word(word, newWord);
+                        queue.Enqueue(newWordFound);
+
+                        if (word.Equals(firstWord))
+                        {
+                            _target = newWordFound;
+                            return;
+                        }
+                    }
+                }
+
                 if (_target != null)
                 {
                     break;
-                }
-            }
-        }
-
-        private void GenerateChildren(Word parent, string targetWord, Queue<Word> queue)
-        {
-            string parentWord = parent.WordKey;
-            List<string> lstWords = _dict.Keys.ToList();
-            foreach (string word in lstWords)
-            {
-                if (_dict[word])
-                    continue;
-
-                if (word.IsDifferentOnlyBy(parentWord, Constants.NumCharsToDiffer))
-                {
-                    _dict[word] = true;
-                    Word newWordFound = new Word(word, parent);
-
-                    queue.Enqueue(newWordFound);
-                    if (word.Equals(targetWord))
-                    {
-                        _target = newWordFound;
-                        return;
-                    }
                 }
             }
         }

@@ -11,9 +11,9 @@ namespace BluePrism.WordLadder
             return new WordLadderSolver();
         }
 
-        public static IWordDictionary CreateWordDictionary(string fileName)
+        public static IWordDictionary CreateWordDictionary(string fileName, string source)
         {
-            return new WordDictionary(fileName);
+            return new WordDictionary(fileName, source);
         }
 
         public static IFileWrapper CreateFileWrapper()

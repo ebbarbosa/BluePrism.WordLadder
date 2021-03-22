@@ -20,8 +20,8 @@
     <ProjectReference Include="..\BluePrism.WordLadder\BluePrism.WordLadder.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="content\wordDict.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content> 
+    <None Update="content\words-english.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>

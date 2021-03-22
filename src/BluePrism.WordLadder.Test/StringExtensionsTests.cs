@@ -72,7 +72,10 @@ namespace BluePrism.WordLadder.Test
         }
 
         [Theory]
-        [InlineData("KART", "DARE")]
+        [InlineData("KART", "ARTX")]
+        [InlineData("KART", "RTAT")]
+        [InlineData("KART", "KATX")]
+        [InlineData("KART", "TKAR")]
         [InlineData("HBRD", "DARY")]
         [InlineData("HACD", "HARY")]
         [InlineData("LIDA", "OILY")]
@@ -82,6 +85,11 @@ namespace BluePrism.WordLadder.Test
         [InlineData("DDDA", "BDDY")]
         [InlineData("DDXZ", "DDDY")]
         [InlineData("DDDZ", "DXDY")]
+        [InlineData("HARD", "DARE")]
+        [InlineData("LISO", "OILO")]
+        [InlineData("AXXA", "XAAZ")]
+        [InlineData("AAAX", "ZAAA")]
+        [InlineData("DDDZ", "DXDD")]
         public void IsSimilarBy_WhenWordsDifferByMoreThanOneChar_ReturnsFalse(string sut, string subject)
         {
             var result = sut.IsDifferentOnlyBy(subject, 1);
@@ -90,15 +98,14 @@ namespace BluePrism.WordLadder.Test
         }
 
         [Theory]
-        [InlineData("HARD", "DARE")]
         [InlineData("HARD", "HARE")]
-        [InlineData("LISO", "OILO")]
-        [InlineData("AXXA", "XAAZ")]
-        [InlineData("AAAX", "ZAAA")]
-        [InlineData("DDDZ", "ADDD")]
-        [InlineData("DDDZ", "DDBD")]
-        [InlineData("DDDZ", "DDDX")]
-        [InlineData("DDDZ", "DXDD")]
+        [InlineData("DDZD", "DDXD")]
+        [InlineData("DDDZ", "DDXZ")]
+        [InlineData("DDDZ", "DZDZ")]
+        [InlineData("DDDZ", "ZDDZ")]
+        [InlineData("ABCZ", "XBCZ")]
+        [InlineData("DDDZ", "XDDZ")]
+        [InlineData("XDDZ", "XADZ")]
         public void IsSimilarBy_WhenWordsDifferByOneChar_ReturnsTrue(string sut, string subject)
         {
             var result = sut.IsDifferentOnlyBy(subject, 1);
@@ -107,6 +114,10 @@ namespace BluePrism.WordLadder.Test
         }
 
         [Theory]
+        [InlineData("AAAA", "AAAA")]
+        [InlineData("AAXX", "XXAA")]
+        [InlineData("XAAX", "XAAX")]
+        [InlineData("AXAX", "XAXA")]
         [InlineData("ABCD", "DCBA")]
         [InlineData("XDDD", "DDDX")]
         [InlineData("DDDZ", "DZDD")]

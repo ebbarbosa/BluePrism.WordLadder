@@ -1,3 +1,5 @@
+using System.Text;
+
 namespace BluePrism.WordLadder.Models.Extensions
 {
 
@@ -7,8 +9,9 @@ namespace BluePrism.WordLadder.Models.Extensions
         /// <summary>
         /// This method compares two string contents and returns if a string has 
         /// only the number of chars different from the subject string.
-        /// This algo uses a tabulating strategy to check the similar letters. Removing the letters that are in the compared string and in the end counting how many are left.
-        /// If the length is the same as the num of Chars to differ this returns true.
+        /// This algorithm iterates through the chars of the caller string (self) while checking if the same letter is in the same index of the subject string copy newWord.
+        /// If they match, it changes the letter on the newWord string for a wildcard char '*', so when compared again it does not confound a repeated letter, and it also decrements the count, initialised by the words length.
+        /// In the end if the count is the same as the num of Chars to differ it returns true.
         /// </summary>
         /// <param name="self">The string calling this function. Must be at least 1 char long.</param>
         /// <param name="subject">String passed to be compared to self. Must be at least 1 char long.</param>
@@ -22,18 +25,21 @@ namespace BluePrism.WordLadder.Models.Extensions
             if (self.Length != subject.Length)
                 return false;
 
-            string newWord = subject;
+            var newWord = subject;
+            var count = subject.Length;
 
-            foreach (var lookupLetter in self)
+            for (int letterIndex = 0; letterIndex < self.Length; letterIndex++)
             {
-                var letterIndex = newWord.IndexOf(lookupLetter);
-                if (letterIndex >= 0)
+                var lookupLetter = self[letterIndex];
+                if (letterIndex >= 0 && newWord[letterIndex].Equals(lookupLetter))
                 {
-                    newWord = newWord.Remove(letterIndex, 1);
+                    var wildCardString = new StringBuilder(newWord) {[letterIndex] = '*'};
+                    newWord = wildCardString.ToString();
+                    count--;
                 }
             }
 
-            return newWord.Length == numCharsToDiffer;
+            return count == numCharsToDiffer;
         }
 
     }

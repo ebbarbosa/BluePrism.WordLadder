@@ -29,11 +29,11 @@ namespace BluePrism.WordLadder.Test
         public void CreateWordDictionary_ReturnsWordDictionaryClasseImplementationOfIWordDictionary()
         {
             string path = Directory.GetCurrentDirectory();
-            var fileName = $"{path}//content//wordDict.txt";
-            var result = Factory.CreateWordDictionary(fileName);
+            var fileName = $"{path}//content//words-english.txt";
+            var sourceWord = "test";
+            var result = Factory.CreateWordDictionary(fileName, sourceWord);
 
             result.Should().BeOfType<WordDictionary>().And.BeAssignableTo<IWordDictionary>();
         }
-
     }
 }

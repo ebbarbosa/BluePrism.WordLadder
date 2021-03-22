@@ -7,7 +7,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BluePrism.WordLadder", "Blu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BluePrism.WordLadder.Test", "BluePrism.WordLadder.Test\BluePrism.WordLadder.Test.csproj", "{1BAE0EA6-3E62-49D4-85AD-0BFE1C8C7025}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BluePrism.WordLadder.Infrastructure", "BluePrism.WordLadder.Infrastructure\BluePrism.WordLadder.Infrastructure.csproj", "{507402AC-91D4-4A2E-811F-A652A8D2691B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BluePrism.WordLadder.Infrastructure", "BluePrism.WordLadder.Infrastructure\BluePrism.WordLadder.Infrastructure.csproj", "{507402AC-91D4-4A2E-811F-A652A8D2691B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{39AFAD19-6F8D-4BFD-9B13-2E6CC17D8E3D}"
+	ProjectSection(SolutionItems) = preProject
+		..\README.md = ..\README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -6,20 +6,21 @@ namespace BluePrism.WordLadder.Infrastructure
 
     public class WordDictionary : IWordDictionary
     {
-        private readonly IDictionary<string, bool> _listOfWords;
+        private readonly HashSet<string> _listOfWords;
 
-        public WordDictionary(string fileName)
+        public WordDictionary(string fileName, string sourceWord)
         {
             try
             {
                 if (!File.Exists(fileName)) throw new FileNotFoundException("Dictionary file not found", fileName);
-                _listOfWords = new Dictionary<string, bool>();
-                using (var sr = new StreamReader(fileName))
+                _listOfWords = new HashSet<string>();
+                using (var sr = new WordDictionaryStreamReader(fileName))
                 {
                     string line = "";
                     while ((line = sr.ReadLine()) != null)
                     {
-                        _listOfWords.Add(line, false);
+                        if (line.Length == sourceWord.Length)
+                            _listOfWords.Add(line);
                     }
                 }
             }
@@ -28,27 +29,9 @@ namespace BluePrism.WordLadder.Infrastructure
                 // todo: add logger
                 throw;
             }
-            finally // TODO: REMOVE THIS TEST CODE
-            {
-                _listOfWords = new Dictionary<string, bool>
-                 {  { "HARD", false },
-                    { "DART", false },
-                    { "GORE", false },
-                    { "GARD", false },
-                    { "TARD", false },
-                    { "DRED", false },
-                    { "FRED", false },
-                    { "BRED", false },
-                    { "DARE", false },
-                    { "FORK", false },
-                    { "FARE", false },
-                    { "BEAR", false },
-                    { "BORE", false }
-                };
-            }
         }
 
-        public IDictionary<string, bool> GetListOfWords()
+        public HashSet<string> GetListOfWords()
         {
             return _listOfWords;
         }
