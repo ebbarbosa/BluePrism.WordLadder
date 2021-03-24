@@ -7,7 +7,7 @@ namespace BluePrism.WordLadder.Domain.Models
     {
         IList<string> SolveLadder(string beginWord,
             string targetWord,
-            IDictionary<string, bool> wordDictionaryVisited,
+            IDictionary<string, bool> wordDictionary,
             IDictionary<string, ICollection<string>> wordDicPreProcessed);
     }
 

@@ -2,6 +2,7 @@ using BluePrism.WordLadder.Infrastructure;
 using FluentAssertions;
 using System.IO;
 using BluePrism.WordLadder.Domain.Models;
+using BluePrism.WordLadder.Infrastructure.FileHelpers;
 using Xunit;
 
 namespace BluePrism.WordLadder.Test

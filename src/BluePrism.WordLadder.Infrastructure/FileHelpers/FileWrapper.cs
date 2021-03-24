@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 
-namespace BluePrism.WordLadder.Infrastructure
+namespace BluePrism.WordLadder.Infrastructure.FileHelpers
 {
     public class FileWrapper : IFileWrapper
     {

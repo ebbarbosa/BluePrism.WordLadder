@@ -43,7 +43,7 @@ namespace BluePrism.WordLadder.Test
             _sut = CreateServiceUnderTest(_realFileName, _sourceWord);
 
             // Act
-            var result = _sut.GetListOfWords();
+            var result = _sut.GetWordDictionary();
 
             // Assert
             result.Should().NotBeNull()

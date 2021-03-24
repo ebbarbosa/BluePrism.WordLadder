@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using BluePrism.WordLadder.Infrastructure.CommandLineHelpers;
 
 namespace BluePrism.WordLadder
 {
@@ -7,40 +9,33 @@ namespace BluePrism.WordLadder
     {
         static void Main(string[] args)
         {
-            // todo: create a model and a validator for the args, this should log the exception and a help response to the console.
-            /*
-             * something like:
-             *
-             * var argsBuilder = Factory.CreateArgsBuilder();
-             *
-             * var args = argsBuilder.AWord(args[0]).AWord(args[1]).AFilePath(args[2]).AFilePath(args[3])
-             *  .Build()
-             *  .LogsWith(Console.WriteLine)
-             *  .Validate()
-             * 
-             */
+            var parser = Factory.CreateCommandLineParser(args);
+            parser.ValidateResult();
+            var argsResult = parser.GetResult();
 
-            string beginWord = args[0];
-            string targetWord = args[1];
-            string wordDicFilePath = args[2];
-            string resultTxtFilePath = args[3];
-
-            var wordDic = Factory.CreateWordDictionary(wordDicFilePath, beginWord);
-            var wordladderSolver = Factory.CreateWordLadderSolver();
-
-            var result = wordladderSolver.SolveLadder(beginWord, 
-                                                                targetWord, 
-                                                                wordDic.GetListOfWords(), 
-                                                                wordDic.GetListOfPreprocessedWords());
-
-            WriteResultToTxtFile(result, resultTxtFilePath);
+            ExecuteProgram(argsResult);
 
             Console.Write("Press <Enter> to exit... ");
             while (Console.ReadKey().Key != ConsoleKey.Enter) { }
         }
 
+        private static void ExecuteProgram(Options argsResult)
+        {
+            var wordDic = Factory.CreateWordDictionary(argsResult.WordDictionaryFilePath, argsResult.BeginWord);
+            var wordladderSolver = Factory.CreateWordLadderSolver();
+
+            var result = wordladderSolver.SolveLadder(argsResult.BeginWord,
+                argsResult.TargetWord,
+                wordDic.GetWordDictionary(),
+                wordDic.GetListOfPreprocessedWords());
+
+            WriteResultToTxtFile(result, argsResult.WordLadderResultFilePath);
+        }
+
         static void WriteResultToTxtFile(IList<string> wordLadder, string filePath)
         {
+            if (!wordLadder.Any()) Console.WriteLine(":( - Unfortunately, the word ladder returned no results. You may try again with different values.");
+
             var fileWrapper = Factory.CreateFileWrapper();
             fileWrapper.Write(wordLadder, filePath);
         }

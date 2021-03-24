@@ -39,14 +39,14 @@ namespace BluePrism.WordLadder.Domain.Models
         }
 
         public IList<string> SolveLadder(string firstWord, string targetWord,
-            IDictionary<string, bool> wordDictionaryVisited,
+            IDictionary<string, bool> wordDictionary,
             IDictionary<string, ICollection<string>> wordOfPreprocessedWords)
         {
             Stopwatch sw = new Stopwatch();
             sw.Start();
 
             _root = new Word(targetWord);
-            _dict = wordDictionaryVisited;
+            _dict = wordDictionary;
             _wildCardsdict = wordOfPreprocessedWords;
             Solve(firstWord);
             

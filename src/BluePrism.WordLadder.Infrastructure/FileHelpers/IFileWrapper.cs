@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace BluePrism.WordLadder.Infrastructure
+namespace BluePrism.WordLadder.Infrastructure.FileHelpers
 {
     public interface IFileWrapper
     {

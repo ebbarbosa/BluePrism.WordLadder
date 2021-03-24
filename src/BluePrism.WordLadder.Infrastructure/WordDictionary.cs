@@ -52,7 +52,7 @@ namespace BluePrism.WordLadder.Infrastructure
             }
         }
 
-        public IDictionary<string, bool> GetListOfWords()
+        public IDictionary<string, bool> GetWordDictionary()
         {
             return _listOfWords;
         }

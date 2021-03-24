@@ -1,5 +1,7 @@
 using BluePrism.WordLadder.Domain.Models;
 using BluePrism.WordLadder.Infrastructure;
+using BluePrism.WordLadder.Infrastructure.CommandLineHelpers;
+using BluePrism.WordLadder.Infrastructure.FileHelpers;
 
 namespace BluePrism.WordLadder
 {
@@ -19,6 +21,11 @@ namespace BluePrism.WordLadder
         public static IFileWrapper CreateFileWrapper()
         {
             return new FileWrapper();
+        }
+
+        public static ICommandLineWrapper CreateCommandLineParser(string[] args)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
