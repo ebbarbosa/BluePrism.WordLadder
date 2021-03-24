@@ -1,7 +1,7 @@
 using BluePrism.WordLadder.Infrastructure;
-using BluePrism.WordLadder.Models;
 using FluentAssertions;
 using System.IO;
+using BluePrism.WordLadder.Domain.Models;
 using Xunit;
 
 namespace BluePrism.WordLadder.Test

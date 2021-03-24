@@ -1,4 +1,5 @@
-using BluePrism.WordLadder.Models.Extensions;
+using BluePrism.WordLadder.Domain.Models.Extensions;
+using FluentAssertions;
 using Xunit;
 
 namespace BluePrism.WordLadder.Test
@@ -90,6 +91,10 @@ namespace BluePrism.WordLadder.Test
         [InlineData("AXXA", "XAAZ")]
         [InlineData("AAAX", "ZAAA")]
         [InlineData("DDDZ", "DXDD")]
+        [InlineData("LIS", "OIL")]
+        [InlineData("AXX", "XAS")]
+        [InlineData("AAA", "ZAZ")]
+        [InlineData("DDD", "XXD")]
         public void IsSimilarBy_WhenWordsDifferByMoreThanOneChar_ReturnsFalse(string sut, string subject)
         {
             var result = sut.IsDifferentOnlyBy(subject, 1);
@@ -105,7 +110,9 @@ namespace BluePrism.WordLadder.Test
         [InlineData("DDDZ", "ZDDZ")]
         [InlineData("ABCZ", "XBCZ")]
         [InlineData("DDDZ", "XDDZ")]
-        [InlineData("XDDZ", "XADZ")]
+        [InlineData("hit", "hot")]
+        [InlineData("dog", "cog")]
+        [InlineData("lot", "log")]
         public void IsSimilarBy_WhenWordsDifferByOneChar_ReturnsTrue(string sut, string subject)
         {
             var result = sut.IsDifferentOnlyBy(subject, 1);
@@ -129,5 +136,18 @@ namespace BluePrism.WordLadder.Test
 
             Assert.False(result);
         }
+
+
+        [Theory]
+        [InlineData("AAAA", new string[] { "*AAA", "A*AA", "AA*A", "AAA*"})]
+        [InlineData("ABCD", new string[] { "*BCD", "A*CD", "AB*D", "ABC*"})]
+        [InlineData("AXXA", new string[] { "*XXA", "A*XA", "AX*A", "AXX*"})]
+        public void GetWildcardWords_ReturnsAllPossibleTrasnformationWildcardedWords(string sut, string[] expectedResult)
+        {
+            var result = sut.GetWildcardWords();
+
+            result.Should().BeEquivalentTo(expectedResult);
+        }
+
     }
 }

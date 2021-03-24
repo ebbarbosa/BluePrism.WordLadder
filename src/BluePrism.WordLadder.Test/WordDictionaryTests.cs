@@ -1,7 +1,7 @@
+using System.Collections.Generic;
 using BluePrism.WordLadder.Infrastructure;
 using FluentAssertions;
 using System.IO;
-using System.Linq;
 using Xunit;
 
 namespace BluePrism.WordLadder.Test
@@ -9,8 +9,9 @@ namespace BluePrism.WordLadder.Test
 
     public class WordDictionaryTests
     {
-        private readonly string _realFileName;
         private readonly string _sourceWord;
+        private IWordDictionary _sut;
+        private readonly string _realFileName;
 
         public WordDictionaryTests()
         {
@@ -19,7 +20,7 @@ namespace BluePrism.WordLadder.Test
             _sourceWord = "TEst";
         }
 
-        private IWordDictionary CreateServiceUnderTest(string fileName, string sourceWord)
+        private static IWordDictionary CreateServiceUnderTest(string fileName, string sourceWord)
         {
             return new WordDictionary(fileName, sourceWord);
         }
@@ -27,7 +28,7 @@ namespace BluePrism.WordLadder.Test
         [Fact]
         public void Constructor_WhenFileDoesNotExist_ThrowsFileNotFoundException()
         {
-            // Arrange& 
+            // Arrange 
             string fileName = "/throwerror.txt";
             string sourceWord = "test";
 
@@ -38,22 +39,43 @@ namespace BluePrism.WordLadder.Test
         [Fact]
         public void GetListOfWords_WhenFileExists_ReturnsListOfWords()
         {
-            // Arrange 
-            var sut = CreateServiceUnderTest(_realFileName,  _sourceWord);
+            // Arrange
+            _sut = CreateServiceUnderTest(_realFileName, _sourceWord);
 
             // Act
-            var result = sut.GetListOfWords();
+            var result = _sut.GetListOfWords();
 
             // Assert
             result.Should().NotBeNull()
                 .And.NotBeEmpty()
-                .And.ContainItemsAssignableTo<string>();
+                .And.Subject.Keys.Should().AllBeAssignableTo<string>();
+            result.Should().NotBeNull()
+                .And.NotBeEmpty()
+                .And.Subject.Values.Should().AllBeAssignableTo<bool>();
 
-            foreach (var resultKey in result)
+            foreach (var resultKey in result.Keys)
             {
                 resultKey.Should().HaveLength(_sourceWord.Length);
             }
+        }
 
+        [Fact]
+        public void GetListOfPreprocessedWords_WhenFileExists_ReturnsTuplesListOfWildCardedWordsAndTheirIndexes()
+        {
+            // Arrange
+            _sut = CreateServiceUnderTest(_realFileName, _sourceWord);
+
+            // Act
+            var result = _sut.GetListOfPreprocessedWords();
+
+            // Assert
+            result.Should().NotBeNull()
+                .And.NotBeEmpty()
+                .And.Subject.Keys.Should().ContainItemsAssignableTo<string>();
+
+            result.Should().NotBeNull()
+                .And.NotBeEmpty()
+                .And.Subject.Values.Should().ContainItemsAssignableTo<IEnumerable<string>>();
         }
     }
 }
