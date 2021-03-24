@@ -1,4 +1,4 @@
-namespace BluePrism.WordLadder.Models
+namespace BluePrism.WordLadder.Domain.Models
 {
     public class Word
     {

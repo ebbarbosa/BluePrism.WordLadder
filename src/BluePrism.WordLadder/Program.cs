@@ -20,15 +20,18 @@ namespace BluePrism.WordLadder
              * 
              */
 
-            string firstWord = args[0];
-            string lastWord = args[1];
+            string beginWord = args[0];
+            string targetWord = args[1];
             string wordDicFilePath = args[2];
             string resultTxtFilePath = args[3];
 
-            var wordDic = Factory.CreateWordDictionary(wordDicFilePath, firstWord);
-
+            var wordDic = Factory.CreateWordDictionary(wordDicFilePath, beginWord);
             var wordladderSolver = Factory.CreateWordLadderSolver();
-            var result = wordladderSolver.SolveLadder(firstWord, lastWord, wordDic.GetListOfWords());
+
+            var result = wordladderSolver.SolveLadder(beginWord, 
+                                                                targetWord, 
+                                                                wordDic.GetListOfWords(), 
+                                                                wordDic.GetListOfPreprocessedWords());
 
             WriteResultToTxtFile(result, resultTxtFilePath);
 
