@@ -10,10 +10,9 @@ namespace BluePrism.WordLadder
         static void Main(string[] args)
         {
             var parser = Factory.CreateCommandLineParser(args);
-            parser.ValidateResult();
             var argsResult = parser.GetResult();
 
-            ExecuteProgram(argsResult);
+            if (argsResult != null) ExecuteProgram(argsResult);
 
             Console.Write("Press <Enter> to exit... ");
             while (Console.ReadKey().Key != ConsoleKey.Enter) { }
@@ -21,10 +20,10 @@ namespace BluePrism.WordLadder
 
         private static void ExecuteProgram(Options argsResult)
         {
-            var wordDic = Factory.CreateWordDictionary(argsResult.WordDictionaryFilePath, argsResult.BeginWord);
+            var wordDic = Factory.CreateWordDictionary(argsResult.WordDictionaryFilePath, argsResult.StartingWord);
             var wordladderSolver = Factory.CreateWordLadderSolver();
 
-            var result = wordladderSolver.SolveLadder(argsResult.BeginWord,
+            var result = wordladderSolver.SolveLadder(argsResult.StartingWord,
                 argsResult.TargetWord,
                 wordDic.GetWordDictionary(),
                 wordDic.GetListOfPreprocessedWords());

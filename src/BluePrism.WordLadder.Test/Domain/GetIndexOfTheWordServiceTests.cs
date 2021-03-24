@@ -1,10 +1,9 @@
-using System;
 using System.Collections.Generic;
 using BluePrism.WordLadder.Domain.Models;
 using FluentAssertions;
 using Xunit;
 
-namespace BluePrism.WordLadder.Test
+namespace BluePrism.WordLadder.Test.Domain
 {
     public class GetIndexOfTheWordServiceTests
     {

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using BluePrism.WordLadder.Infrastructure.FileHelpers;
 
-namespace BluePrism.WordLadder.Test
+namespace BluePrism.WordLadder.Test.Infrastructure
 {
     public class FileWrapperTester : FileWrapper
     {

@@ -1,10 +1,10 @@
 using System.Collections.Generic;
+using System.IO;
 using BluePrism.WordLadder.Infrastructure;
 using FluentAssertions;
-using System.IO;
 using Xunit;
 
-namespace BluePrism.WordLadder.Test
+namespace BluePrism.WordLadder.Test.Infrastructure
 {
 
     public class WordDictionaryTests

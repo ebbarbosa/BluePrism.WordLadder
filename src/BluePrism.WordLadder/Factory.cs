@@ -25,7 +25,7 @@ namespace BluePrism.WordLadder
 
         public static ICommandLineWrapper CreateCommandLineParser(string[] args)
         {
-            throw new System.NotImplementedException();
+            return new CommandLineWrapper(args);
         }
     }
 }

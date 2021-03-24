@@ -1,13 +1,11 @@
-using System;
-using FluentAssertions;
 using System.Collections.Generic;
 using System.Linq;
 using BluePrism.WordLadder.Domain.Models;
+using FluentAssertions;
 using NSubstitute;
-using NSubstitute.Core;
 using Xunit;
 
-namespace BluePrism.WordLadder.Test
+namespace BluePrism.WordLadder.Test.Domain
 {
 
     public class WordLadderSolverTests

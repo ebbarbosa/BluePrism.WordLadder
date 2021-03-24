@@ -1,9 +1,8 @@
-using BluePrism.WordLadder.Infrastructure;
-using FluentAssertions;
 using System.Collections.Generic;
+using FluentAssertions;
 using Xunit;
 
-namespace BluePrism.WordLadder.Test
+namespace BluePrism.WordLadder.Test.Infrastructure
 {
     public class FileWrapperTests
     {
