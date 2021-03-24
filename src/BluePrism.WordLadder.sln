@@ -14,6 +14,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionIt
 		..\README.md = ..\README.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BluePrism.WordLadder.Domain", "BluePrism.WordLadder.Domain\BluePrism.WordLadder.Domain.csproj", "{A091D2FB-0B2D-4830-8A19-8B02484096E8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -60,6 +62,18 @@ Global
 		{507402AC-91D4-4A2E-811F-A652A8D2691B}.Release|x64.Build.0 = Release|Any CPU
 		{507402AC-91D4-4A2E-811F-A652A8D2691B}.Release|x86.ActiveCfg = Release|Any CPU
 		{507402AC-91D4-4A2E-811F-A652A8D2691B}.Release|x86.Build.0 = Release|Any CPU
+		{A091D2FB-0B2D-4830-8A19-8B02484096E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A091D2FB-0B2D-4830-8A19-8B02484096E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A091D2FB-0B2D-4830-8A19-8B02484096E8}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A091D2FB-0B2D-4830-8A19-8B02484096E8}.Debug|x64.Build.0 = Debug|Any CPU
+		{A091D2FB-0B2D-4830-8A19-8B02484096E8}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A091D2FB-0B2D-4830-8A19-8B02484096E8}.Debug|x86.Build.0 = Debug|Any CPU
+		{A091D2FB-0B2D-4830-8A19-8B02484096E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A091D2FB-0B2D-4830-8A19-8B02484096E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A091D2FB-0B2D-4830-8A19-8B02484096E8}.Release|x64.ActiveCfg = Release|Any CPU
+		{A091D2FB-0B2D-4830-8A19-8B02484096E8}.Release|x64.Build.0 = Release|Any CPU
+		{A091D2FB-0B2D-4830-8A19-8B02484096E8}.Release|x86.ActiveCfg = Release|Any CPU
+		{A091D2FB-0B2D-4830-8A19-8B02484096E8}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

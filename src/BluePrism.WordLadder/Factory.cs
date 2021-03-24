@@ -1,5 +1,5 @@
+using BluePrism.WordLadder.Domain.Models;
 using BluePrism.WordLadder.Infrastructure;
-using BluePrism.WordLadder.Models;
 
 namespace BluePrism.WordLadder
 {
@@ -8,7 +8,7 @@ namespace BluePrism.WordLadder
     {
         public static IWordLadderSolver CreateWordLadderSolver()
         {
-            return new WordLadderSolver();
+            return new WordLadderSolver(new GetSimilarWordsFromProcessedListService());
         }
 
         public static IWordDictionary CreateWordDictionary(string fileName, string source)
