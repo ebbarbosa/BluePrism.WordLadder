@@ -31,7 +31,7 @@ namespace BluePrism.WordLadder.Test
             var expectedResult = new List<string>() {"HIRE", "SIRE", "SORE", "SORT"};
 
             // Act
-            var result = _sut.SolveLadder(beginWord, targetWord, wordDic.GetListOfWords(), wordDic.GetListOfPreprocessedWords());
+            var result = _sut.SolveLadder(beginWord, targetWord, wordDic.GetWordDictionary(), wordDic.GetListOfPreprocessedWords());
 
             // Assert
             result.Should().NotBeEmpty().And.ContainInOrder(expectedResult);

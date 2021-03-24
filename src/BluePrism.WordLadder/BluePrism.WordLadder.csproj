@@ -10,10 +10,4 @@
     <ProjectReference Include="..\BluePrism.WordLadder.Infrastructure\BluePrism.WordLadder.Infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Update="Content\words-english.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
 </Project>
