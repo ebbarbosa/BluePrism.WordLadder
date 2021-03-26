@@ -1,4 +1,4 @@
-namespace BluePrism.WordLadder
+namespace BluePrism.WordLadder.Domain.Models
 {
 
     public class Constants

@@ -2,9 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using BluePrism.WordLadder.Domain.Models.Extensions;
+using BluePrism.WordLadder.Domain.Extensions;
+using BluePrism.WordLadder.Domain.Models;
 
-namespace BluePrism.WordLadder.Domain.Models
+namespace BluePrism.WordLadder.Domain.Business
 {
     public class WordLadderSolver : IWordLadderSolver
     {
@@ -48,6 +49,7 @@ namespace BluePrism.WordLadder.Domain.Models
             _root = new Word(targetWord);
             _dict = wordDictionary;
             _wildCardsdict = wordOfPreprocessedWords;
+
             Solve(firstWord);
             
             if (_target == null)
@@ -94,11 +96,6 @@ namespace BluePrism.WordLadder.Domain.Models
                         return;
                     }
                 }
-
-                if (_target != null)
-                {
-                    break;
-                }    
             }
         }
     }

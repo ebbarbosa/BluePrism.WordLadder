@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace BluePrism.WordLadder.Domain.Models
+namespace BluePrism.WordLadder.Domain
 {
     public interface IGetSimilarWordsFromProcessedListService
     {

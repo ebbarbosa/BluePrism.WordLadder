@@ -1,6 +1,7 @@
 using System.Collections.Generic;
+using BluePrism.WordLadder.Domain.Models;
 
-namespace BluePrism.WordLadder.Domain.Models
+namespace BluePrism.WordLadder.Domain.Extensions
 {
     public static class WordExtensions
     {

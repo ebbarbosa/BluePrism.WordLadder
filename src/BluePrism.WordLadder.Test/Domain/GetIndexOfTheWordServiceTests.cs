@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using BluePrism.WordLadder.Domain.Business;
 using BluePrism.WordLadder.Domain.Models;
 using FluentAssertions;
 using Xunit;

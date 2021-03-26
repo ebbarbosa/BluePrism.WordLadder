@@ -9,7 +9,7 @@ namespace BluePrism.WordLadder
     {
         static void Main(string[] args)
         {
-            var parser = Factory.CreateCommandLineParser(args);
+            var parser = Factory.CreateCommandLineWrapper(args);
             var argsResult = parser.GetResult();
 
             if (argsResult != null) ExecuteProgram(argsResult);
@@ -20,13 +20,15 @@ namespace BluePrism.WordLadder
 
         private static void ExecuteProgram(Options argsResult)
         {
-            var wordDic = Factory.CreateWordDictionary(argsResult.WordDictionaryFilePath, argsResult.StartingWord);
+            var wordDictionaryService = Factory.CreateWordDictionaryService();
+            wordDictionaryService.Initialise(argsResult.WordDictionaryFilePath, argsResult.SourceWord);
+
             var wordladderSolver = Factory.CreateWordLadderSolver();
 
-            var result = wordladderSolver.SolveLadder(argsResult.StartingWord,
+            var result = wordladderSolver.SolveLadder(argsResult.SourceWord,
                 argsResult.TargetWord,
-                wordDic.GetWordDictionary(),
-                wordDic.GetListOfPreprocessedWords());
+                wordDictionaryService.GetWordDictionary(),
+                wordDictionaryService.GetPreprocessedWordsDictionary());
 
             WriteResultToTxtFile(result, argsResult.WordLadderResultFilePath);
         }

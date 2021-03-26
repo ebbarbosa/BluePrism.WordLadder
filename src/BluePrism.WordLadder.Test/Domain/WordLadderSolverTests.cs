@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
+using BluePrism.WordLadder.Domain;
+using BluePrism.WordLadder.Domain.Business;
 using BluePrism.WordLadder.Domain.Models;
 using FluentAssertions;
 using NSubstitute;

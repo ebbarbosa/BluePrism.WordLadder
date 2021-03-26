@@ -1,7 +1,6 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 
-namespace BluePrism.WordLadder.Infrastructure
+namespace BluePrism.WordLadder.Infrastructure.FileHelpers
 {
     public class WordDictionaryStreamReader : StreamReader
     {

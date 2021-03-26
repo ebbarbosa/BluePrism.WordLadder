@@ -4,16 +4,16 @@ namespace BluePrism.WordLadder.Infrastructure.CommandLineHelpers
 {
     public class Options
     {
-        public Options(string startingWord, string targetWord, string wordDictionaryFilePath, string wordLadderResultFilePath)
+        public Options(string sourceWord, string targetWord, string wordDictionaryFilePath, string wordLadderResultFilePath)
         {
-            StartingWord = startingWord;
+            SourceWord = sourceWord;
             TargetWord = targetWord;
             WordDictionaryFilePath = wordDictionaryFilePath;
             WordLadderResultFilePath = wordLadderResultFilePath;
         }
 
         [Value(0, MetaName = "starting word", Required = true, HelpText = "Input word to begin the word ladder.")]
-        public string StartingWord { get; }
+        public string SourceWord { get; }
 
         [Value(1, MetaName = "target word", Required = true, HelpText = "Target word for the word ladder.")]
         public string TargetWord { get; }
