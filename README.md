@@ -16,29 +16,25 @@
 ```
 C:\...\BluePrism.WordLadder> cd src
 C:\...\BluePrism.WordLadder\src> dotnet publish -p:PublishProfile=FolderProfile
-Microsoft (R) Build Engine version 16.8.3+39993bd9d for .NET
-Copyright (C) Microsoft Corporation. All rights reserved..
-
-  BluePrism.WordLadder.Test -> C:\...\BluePrism.WordLadder\src\BluePrism.WordLadder.Test\bin\Debug\net5.0\publish\
-PS C:\dev\git\BluePrism.WordLadder\src> 
 ```
 
 ##### Once published, go to the publish folder and run the program passing the desired arguments:
 
 ```
-C:\...\BluePrism.WordLadder\src> cd ..\publish 
+C:\...\BluePrism.WordLadder\src> cd publish 
 C:\...\BluePrism.WordLadder\src\publish> BluePrism.WordLadder <start word 4 letters> <end word four letters> <path to .\words-english.txt> <path to .\word-ladder.txt>
 ```
 
 ##### There is a copy of the provided words-english.txt file inside the contents folder, so you may run it like so for a smoke test: 
 
 ```
-C:\...\BluePrism.WordLadder\src\publish> .\BluePrism.WordLadder.exe HIRE SORT ..\content\words-english.txt .\ANSWER.TXT
-Time taken with graphs = 1 ms
+C:\...\BluePrism.WordLadder\src\publish> BluePrism.WordLadder MUST HIRE ..\..\content\words-english.txt .\answer.txt
+Time taken with graphs = 2 ms
 
-Answer file created in file:///C:\....\BluePrism.WordLadder\publish\ANSWER.TXT
+Answer file created in file:///C:\...\BluePrism.WordLadder\src\publish\answer.txt
 
 Press any <key> to exit...
+C:\...\BluePrism.WordLadder\src\publish>
 ```
 
 ##### Once successfully run it will open the generated .txt file containing the word ladder automatically.
