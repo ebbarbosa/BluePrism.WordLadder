@@ -4,12 +4,13 @@ using BluePrism.WordLadder.Infrastructure;
 using BluePrism.WordLadder.Infrastructure.CommandLineHelpers;
 using BluePrism.WordLadder.Infrastructure.FileHelpers;
 using BluePrism.WordLadder.Infrastructure.Services;
+using BluePrism.WordLadder.Infrastructure.Validators;
 
 namespace BluePrism.WordLadder
 {
 
     /// <summary>
-    /// This class works as an IoC and DIContainer while no implementation is set.
+    /// This class works as an IoC and DIContainer while no implementation is set. All dependencies are here so the other layers can de independent from implementation and use the interfaces only.
     /// </summary>
     public class Factory
     {
@@ -28,9 +29,14 @@ namespace BluePrism.WordLadder
             return new FileWrapper();
         }
 
-        public static ICommandLineWrapper CreateCommandLineWrapper(string[] args)
+        public static ICommandLineWrapper CreateCommandLineWrapper()
         {
-            return new CommandLineWrapper(args);
+            return new CommandLineWrapper();
+        }
+
+        public static IInputValidator CreateInputValidator()
+        {
+            return new InputValidator(CreateFileWrapper());
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
@@ -7,64 +8,60 @@ namespace BluePrism.WordLadder.Test
     public class Solution
     {
 
-        private IDictionary<string, bool> _dict;
-        private IDictionary<string, ICollection<string>> _wildCardsdict;
         private string _root;
-        IDictionary<string, ICollection<string>> _listOfPreprocessedWords = new Dictionary<string, ICollection<string>>();
-        IDictionary<string, bool> _listOfWords = new Dictionary<string, bool>();
+        private readonly IDictionary<string, ICollection<string>> _listOfPreprocessedWords = new Dictionary<string, ICollection<string>>();
+        private readonly IDictionary<string, bool> _listOfWords = new Dictionary<string, bool>();
 
         public int LadderLength(string beginWord, string endWord, IList<string> wordList)
         {
+            if (!wordList.Contains(endWord)) return 0;
+
+            AddValidatedWordAndCreatePreprocessedDictionary(beginWord);
+            _listOfWords[beginWord] = true;
             foreach (var word in wordList)
             {
-                AddValidatedWordAndCreatePreprocessedDictionary(word, word.Length);
+                AddValidatedWordAndCreatePreprocessedDictionary(word);
             }
 
-            _root = endWord;
+            _root = beginWord;
 
-            return Solve(beginWord);
+            return Solve(endWord);
         }
 
-        private int Solve(string firstWord)
+        private int Solve(string targetWord)
         {
-            var queue = new Queue<string>();
-            queue.Enqueue(_root);
-
-            int level = 0;
+            var queue = new Queue<Tuple<string, int>>();
+            queue.Enqueue(new Tuple<string, int>(_root, 1));
 
             while (queue.Count > 0)
             {
-                level++;
+                var parentWord = queue.Dequeue();
 
-                string parentWord = queue.Dequeue();
+                var adjacentWords = GetSimiliarWords(parentWord.Item1, _listOfPreprocessedWords);
+                if (!adjacentWords.Any()) continue;
 
-                var similarWords = GetSimiliarWords(parentWord, _wildCardsdict);
-                if (!similarWords.Any()) continue;
-
-                foreach (var wordFound in similarWords)
+                foreach (var adjacentWord in adjacentWords)
                 {
-                    if (_dict[wordFound])
+                    if (_listOfWords[adjacentWord])
                         continue;
 
-                    level++;
+                    Tuple<string, int> newWordFound = new Tuple<string, int>(adjacentWord, parentWord.Item2 + 1);
 
-                    _dict[wordFound] = true;
-
-                    string newWordFound = wordFound;
-
-                    queue.Enqueue(newWordFound);
-
-                    if (wordFound.Equals(firstWord))
+                    if (newWordFound.Item1.Equals(targetWord, StringComparison.InvariantCultureIgnoreCase))
                     {
-                        return level;
+                        return newWordFound.Item2;
                     }
+
+                    _listOfWords[adjacentWord] = true;
+                    
+                    queue.Enqueue(newWordFound);
                 }
             }
 
-            return level;
+            return 0;
         }
 
-        private HashSet<string> GetSimiliarWords(string word, IDictionary<string, ICollection<string>> preprocessedWords)
+        private static HashSet<string> GetSimiliarWords(string word, IDictionary<string, ICollection<string>> preprocessedWords)
         {
             var wildcardWords = GetWildcardWords(word);
             var words = new HashSet<string>();
@@ -78,10 +75,9 @@ namespace BluePrism.WordLadder.Test
             return words;
         }
 
-        private List<string> GetWildcardWords(string self)
+        private static List<string> GetWildcardWords(string self)
         {
             if (string.IsNullOrWhiteSpace(self)) return new List<string>();
-            if (self.Length < 2) return new List<string>() { "*" };
 
             var result = new List<string>();
 
@@ -98,21 +94,24 @@ namespace BluePrism.WordLadder.Test
             return result;
         }
 
-        private void AddValidatedWordAndCreatePreprocessedDictionary(string line, int permittedLength)
+        private void AddValidatedWordAndCreatePreprocessedDictionary(string line)
         {
-            if (line.Length == permittedLength)
-            {
-                if (_listOfWords.ContainsKey(line)) return;
+
+            if (!_listOfWords.ContainsKey(line))
                 _listOfWords.Add(line, false);
 
-                var preprocessedWords = GetWildcardWords(line);
-                foreach (var preprocessedWord in preprocessedWords)
+            var preprocessedWords = GetWildcardWords(line);
+            foreach (var preprocessedWord in preprocessedWords)
+            {
+                if (_listOfPreprocessedWords.ContainsKey(preprocessedWord))
                 {
-                    if (_listOfPreprocessedWords.ContainsKey(preprocessedWord))
+                    if (!_listOfPreprocessedWords[preprocessedWord].Contains(line))
+                    {
                         _listOfPreprocessedWords[preprocessedWord].Add(line);
-                    else
-                        _listOfPreprocessedWords.Add(preprocessedWord, new List<string> { line });
+                    }
                 }
+                else
+                    _listOfPreprocessedWords.Add(preprocessedWord, new List<string> { line });
             }
         }
     }

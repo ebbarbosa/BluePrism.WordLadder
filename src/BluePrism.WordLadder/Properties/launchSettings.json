@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "BluePrism.WordLadder": {
+      "commandName": "Project",
+      "commandLineArgs": "SAME COST ..\\content\\words-englush.txt .\\answer.txt"
+    }
+  }
+}

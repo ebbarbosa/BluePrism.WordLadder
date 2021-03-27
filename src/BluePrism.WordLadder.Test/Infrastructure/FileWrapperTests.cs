@@ -32,17 +32,55 @@ namespace BluePrism.WordLadder.Test.Infrastructure
         }
 
         [Fact]
-        public void Validate_WhenFileDoesNotExist_ThrowsFileNotFoundException()
+        public void FileExists_WhenFileExists_ReturnsTrue()
+        {
+            // Arrange
+            string fileName = ".\\content\\words-english.txt";
+
+            // Act 
+            var result = _fileWrapper.FileExists(fileName);
+
+            // Assert
+            Assert.True(result);
+        }
+
+        [Fact]
+        public void Validate_WhenFileDoesNotExist_ReturnsFalse()
         {
             // Arrange
             string fileName = "someFileName";
-            string message = "Word Dictionary file not found";
 
             // Act 
-            var result = Assert.Throws<FileNotFoundException>(() => _fileWrapper.ValidateFile(fileName));
+            var result = _fileWrapper.FileExists(fileName);
 
             // Assert
-            result.Message.Should().Be(message);
+            Assert.False(result);
+        }
+
+        [Fact]
+        public void IsValidPath_WhenPathIsValid_ReturnsTrue()
+        {
+            // Arrange
+            string fileName = "./word-ladder.txt";
+
+            // Act 
+            var result = _fileWrapper.IsValidPath(fileName);
+
+            // Assert
+            Assert.True(result);
+        }
+
+        [Fact]
+        public void IsValidPath_WhenPathIsInvalid_ReturnsFalse()
+        {
+            // Arrange
+            string fileName = "!!!<<>>someFileName.txt";
+
+            // Act 
+            var result = _fileWrapper.IsValidPath(fileName);
+
+            // Assert
+            Assert.False(result);
         }
 
         [Fact]

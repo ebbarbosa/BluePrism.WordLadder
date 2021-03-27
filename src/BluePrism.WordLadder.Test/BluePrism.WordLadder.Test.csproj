@@ -4,6 +4,9 @@
     <IsPackable>false</IsPackable>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="content\words-english.txt" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.1" />
     <PackageReference Include="NSubstitute" Version="4.2.2" />
     <PackageReference Include="xunit" Version="2.4.1" />
@@ -23,7 +26,7 @@
     <ProjectReference Include="..\BluePrism.WordLadder\BluePrism.WordLadder.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <None Update="content\words-english.txt">
+    <None Include="content\words-english.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

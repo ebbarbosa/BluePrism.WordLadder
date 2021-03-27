@@ -15,8 +15,6 @@ namespace BluePrism.WordLadder.Domain.Extensions
         public static IList<string> GetWildcardWords(this string self)
         {
             if (string.IsNullOrWhiteSpace(self)) return new string[] { };
-            if (self.Length < 2) return new string[] { "*" };
-
             var result = new List<string>();
 
             var newWord = self;

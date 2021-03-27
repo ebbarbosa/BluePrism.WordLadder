@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using BluePrism.WordLadder.Infrastructure;
+using BluePrism.WordLadder.Infrastructure.CommandLineHelpers;
+using BluePrism.WordLadder.Infrastructure.FileHelpers;
 using BluePrism.WordLadder.Infrastructure.Services;
 using FluentAssertions;
 using NSubstitute;
@@ -12,7 +14,7 @@ namespace BluePrism.WordLadder.Test.Infrastructure
 
     public class WordDictionaryTests
     {
-        private IWordDictionaryService _sut;
+        private readonly IWordDictionaryService _sut;
         private readonly IDictionaryPreprocessService _dictionaryPreprocessService;
         private readonly IFileWrapper _fileWrapper;
 
@@ -28,15 +30,15 @@ namespace BluePrism.WordLadder.Test.Infrastructure
         {
             // Arrange 
             var fileName = "/throwerror.txt";
-            var sourceWord = "W";
-            string? message = $"";
-            _fileWrapper.When(f => f.ValidateFile(Arg.Is<string>(fileName)))
-                .Do(f => throw new FileNotFoundException(message));
+            var startWord = "ABCD";
+            var endWord = "WXYZ";
+            _fileWrapper.When(f => f.FileExists(Arg.Is<string>(fileName)))
+                .Do(f => throw new FileNotFoundException());
 
             var wordDictionary = new WordDictionaryService(_fileWrapper, _dictionaryPreprocessService);
 
             // Act & Assert
-            Assert.Throws<FileNotFoundException>(() => wordDictionary.Initialise(fileName, sourceWord));
+            Assert.Throws<FileNotFoundException>(() => wordDictionary.Initialise(new Options(startWord, endWord, fileName, "answer.txt")));
         }
 
         [Fact]
@@ -54,7 +56,7 @@ namespace BluePrism.WordLadder.Test.Infrastructure
         public void GetPreprocessedWordsDictionary_ReturnsDictionaryOfStringAndCollectionOfStrings()
         {
             // Arrange
-            _fileWrapper.ValidateFile(Arg.Any<string>());
+            _fileWrapper.FileExists(Arg.Any<string>());
 
             StringBuilder sb = new StringBuilder();
             sb.AppendLine("A");
@@ -63,17 +65,16 @@ namespace BluePrism.WordLadder.Test.Infrastructure
             byte[] wordDictionaryFile = Encoding.UTF8.GetBytes(sb.ToString());
             var fakeMemoryStream = new MemoryStream(wordDictionaryFile);
 
-            _fileWrapper
-                .When(f => f.StreamReader(Arg.Any<string>()))
-                .Do((fs) => new StreamReader(fakeMemoryStream));
+            StreamReader stream = null;
+            _fileWrapper.StreamReader(Arg.Any<string>()).Returns(stream = new WordDictionaryStreamReader(fakeMemoryStream));
 
             _dictionaryPreprocessService
                 .When(service => service.CreatePreprocessedDictionaries(Arg.Is(
-                                                new DictionaryPreprocessServiceParams("A",  
-                                        new Dictionary<string, bool>(), 
+                                                new DictionaryPreprocessServiceParams("A",
+                                        new Dictionary<string, bool>(),
                                 new Dictionary<string, ICollection<string>>()))))
                 .Do(d => d.ArgAt<DictionaryPreprocessServiceParams>(0).ListOfPreprocessedWords.Add("*", new List<string>() { "A", "B", "C" }));
-            
+
             // Act
             var result = _sut.GetPreprocessedWordsDictionary();
 
@@ -81,7 +82,8 @@ namespace BluePrism.WordLadder.Test.Infrastructure
             result.Keys.Should().ContainItemsAssignableTo<string>();
 
             result.Values.Should().ContainItemsAssignableTo<IEnumerable<string>>();
-        }
 
+            stream.Dispose();
+        }
     }
 }

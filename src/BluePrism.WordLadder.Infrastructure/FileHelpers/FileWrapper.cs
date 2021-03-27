@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using BluePrism.WordLadder.Domain.Models;
 
 namespace BluePrism.WordLadder.Infrastructure.FileHelpers
 {
+    /// <summary>
+    /// Wrapper implementation for the System.IO.File class and its methods.
+    /// </summary>
     public class FileWrapper : IFileWrapper
     {
         public WordDictionaryStreamReader StreamReader(string fileName)
@@ -24,23 +28,47 @@ namespace BluePrism.WordLadder.Infrastructure.FileHelpers
             }
         }
 
-        public void ValidateFile(string fileName)
+        public bool FileExists(string fileName)
         {
-            if (!File.Exists(fileName)) throw new FileNotFoundException("Word Dictionary file not found", fileName);
+            var actualFileName = GetActualFilePath(fileName);
+            return File.Exists(actualFileName);
         }
 
-        public void ValidateFilePath(string fileName)
+        private static string GetActualFilePath(string fileName)
         {
-            if (!Directory.Exists(fileName))
+            var isPathRooted = Path.IsPathRooted(fileName);
+            var actualFileName = isPathRooted ? fileName : Path.GetFullPath(fileName);
+            return actualFileName;
+        }
+
+        public bool IsValidPath(string fileName)
+        {
+            var realPath = GetActualFilePath(fileName);
+            bool rc = Constants.Fail;
+            try
             {
-                Console.WriteLine("The answer file will be created on the root folder of the application...");
-                File.Create(fileName);
+                using (new StreamWriter(realPath, true))
+                {
+                    rc = Constants.Pass;    
+                }
             }
+            catch (Exception)
+            {
+                rc = Constants.Fail;
+            }
+
+            return rc;
+        }
+
+        public bool HasTxtExtension(string fileName)
+        {
+            return Path.HasExtension(fileName) && fileName.ToLower().EndsWith(".txt");
         }
 
         protected virtual void WriteAllLines(IList<string> wordLadder, string fileName)
         {
             File.WriteAllLines(fileName, wordLadder);
         }
+
     }
 }

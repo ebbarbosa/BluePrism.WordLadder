@@ -39,7 +39,7 @@ namespace BluePrism.WordLadder.Test
         [Fact]
         public void CreateCommandLineWrapper_ReturnsCommandLineParserClassImplementationOfIWordDictionary()
         {
-            var result = Factory.CreateCommandLineWrapper(new string[] {"a", "v", "somefilepath", "otherfilepath"});
+            var result = Factory.CreateCommandLineWrapper();
 
             result.Should().BeOfType<CommandLineWrapper>().And.BeAssignableTo<ICommandLineWrapper>();
         }

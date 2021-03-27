@@ -2,21 +2,24 @@
 
 namespace BluePrism.WordLadder.Infrastructure.CommandLineHelpers
 {
+    /// <summary>
+    /// Class to hold the program arguments.
+    /// </summary>
     public class Options
     {
-        public Options(string sourceWord, string targetWord, string wordDictionaryFilePath, string wordLadderResultFilePath)
+        public Options(string startWord, string endWord, string wordDictionaryFilePath, string wordLadderResultFilePath)
         {
-            SourceWord = sourceWord;
-            TargetWord = targetWord;
+            StartWord = startWord;
+            EndWord = endWord;
             WordDictionaryFilePath = wordDictionaryFilePath;
             WordLadderResultFilePath = wordLadderResultFilePath;
         }
 
-        [Value(0, MetaName = "starting word", Required = true, HelpText = "Input word to begin the word ladder.")]
-        public string SourceWord { get; }
+        [Value(0, MetaName = "start word", Required = true, HelpText = "Start word for the word ladder.")]
+        public string StartWord { get; }
 
-        [Value(1, MetaName = "target word", Required = true, HelpText = "Target word for the word ladder.")]
-        public string TargetWord { get; }
+        [Value(1, MetaName = "end word", Required = true, HelpText = "End word for the word ladder.")]
+        public string EndWord { get; }
 
         [Value(2, MetaName = "word dictionary file", Required = true, HelpText = "Word Dictionary file name. Please provide a path to an existing .txt file where every line is a single word.")]
         public string WordDictionaryFilePath { get; }
