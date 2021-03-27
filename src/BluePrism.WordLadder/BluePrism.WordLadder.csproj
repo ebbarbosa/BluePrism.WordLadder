@@ -10,4 +10,8 @@
     <ProjectReference Include="..\BluePrism.WordLadder.Infrastructure\BluePrism.WordLadder.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="BluePrism.WordLadder\" />
+  </ItemGroup>
+
 </Project>

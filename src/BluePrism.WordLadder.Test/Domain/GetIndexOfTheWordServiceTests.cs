@@ -1,10 +1,10 @@
-using System;
 using System.Collections.Generic;
+using BluePrism.WordLadder.Domain.Business;
 using BluePrism.WordLadder.Domain.Models;
 using FluentAssertions;
 using Xunit;
 
-namespace BluePrism.WordLadder.Test
+namespace BluePrism.WordLadder.Test.Domain
 {
     public class GetIndexOfTheWordServiceTests
     {
@@ -16,7 +16,7 @@ namespace BluePrism.WordLadder.Test
         }
 
         [Fact]
-        public void GetIndex_WhenWordIsNotFoundInThePreprocessedList_ReturnsMinusOne()
+        public void GetSimiliarWords_WhenWordIsNotFoundInThePreprocessedList_ReturnsMinusOne()
         {
             string word = null;
             IDictionary<string, ICollection<string>> wildCardsdict = null;
@@ -27,7 +27,7 @@ namespace BluePrism.WordLadder.Test
         }
 
         [Fact]
-        public void GetIndex_WhenWildcardWordIsFoundInThePreprocessedList_ReturnsAllPossibleWords()
+        public void GetSimiliarWords_WhenWildcardWordIsFoundInThePreprocessedList_ReturnsAllPossibleWords()
         {
             string word = "dog";
             var wildCardsdict = new Dictionary<string, ICollection<string>>

@@ -2,26 +2,27 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using BluePrism.WordLadder.Domain.Models.Extensions;
+using BluePrism.WordLadder.Domain.Extensions;
+using BluePrism.WordLadder.Domain.Models;
 
-namespace BluePrism.WordLadder.Domain.Models
+namespace BluePrism.WordLadder.Domain.Business
 {
     public class WordLadderSolver : IWordLadderSolver
     {
         private readonly IGetSimilarWordsFromProcessedListService _getWordFromProcessedListService;
 
         /// <summary>
-        /// root will hold the last word of the ladder and its parent.
+        /// root will hold the end word of the ladder and its parent.
         /// </summary>
         private Word _root;
 
         /// <summary>
-        /// target holds the value of the last word to be found. Once target is found we have completed the ladder.
+        /// target holds the value of the start word to be found. Once target is found we have completed the ladder. If it is never found the ladder has no answer.
         /// </summary>
         private Word _target = null;
 
         /// <summary>
-        /// This dictionary works as a memoizing object, to remeber the words already examined.
+        /// This dictionary works as a memoizing object, to remeber the words already examined. It is initialised by <paramref name="wordDictionary"/>
         /// </summary>
         private IDictionary<string, bool> _dict;
 
@@ -38,6 +39,14 @@ namespace BluePrism.WordLadder.Domain.Models
             _getWordFromProcessedListService = getWordFromProcessedListService;
         }
 
+        /// <summary>
+        /// This method solves the word ladder. Using a BFS algorithm.
+        /// </summary>
+        /// <param name="firstWord">Start word for the word ladder</param>
+        /// <param name="targetWord">End word for the word ladder</param>
+        /// <param name="wordDictionary">Contains the words from the word list provided, filtered by alphabetical words only with the same lngth as the start word and boolean values set to false to indicate whether a word was already visited.</param>
+        /// <param name="wordOfPreprocessedWords">Contains keys formed from wildcard transformations of the words from <paramref name="wordDictionary"/> and values are the words which can be the key possible transformations. I.e. key is C*ST the value will contain a colleciton of words such as COST, CAST, CIST.</param>
+        /// <returns></returns>
         public IList<string> SolveLadder(string firstWord, string targetWord,
             IDictionary<string, bool> wordDictionary,
             IDictionary<string, ICollection<string>> wordOfPreprocessedWords)
@@ -48,6 +57,7 @@ namespace BluePrism.WordLadder.Domain.Models
             _root = new Word(targetWord);
             _dict = wordDictionary;
             _wildCardsdict = wordOfPreprocessedWords;
+
             Solve(firstWord);
             
             if (_target == null)
@@ -94,11 +104,6 @@ namespace BluePrism.WordLadder.Domain.Models
                         return;
                     }
                 }
-
-                if (_target != null)
-                {
-                    break;
-                }    
             }
         }
     }
