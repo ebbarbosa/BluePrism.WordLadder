@@ -7,6 +7,7 @@ using BluePrism.WordLadder.Domain.Business;
 using BluePrism.WordLadder.Domain.Models;
 using BluePrism.WordLadder.Infrastructure.CommandLineHelpers;
 using BluePrism.WordLadder.Infrastructure.FileHelpers;
+using BluePrism.WordLadder.Infrastructure.Services;
 using FluentAssertions;
 using Xunit;
 
@@ -33,7 +34,7 @@ namespace BluePrism.WordLadder.Test
 
             var answerFile = $"{path}//answer.txt";
 
-            var wordDicService = Factory.CreateWordDictionaryService();
+            var wordDicService = new WordDictionaryService(new FileWrapper(), new DictionaryPreprocessService());
             wordDicService.Initialise(new Options(beginWord, targetWord, fileName, answerFile));
 
             var expectedResult = new List<string>() { "SATE", "LATE", "LASE", "LAST", "LOST", "COST" };
@@ -50,6 +51,13 @@ namespace BluePrism.WordLadder.Test
         public void OpenFile()
         {
             var fileName = @"file:///C:/dev/git/BluePrism.WordLadder/answer.txt";
+            new OpenFileHelper().OpenFile(fileName);
+        }
+
+        [Fact(Skip = "This is for development purposes only")]
+        public void OpenFile_IfError_WritesToConsole()
+        {
+            var fileName = @"file:///C:/aaaaaaaaaaadsadasdas";
             new OpenFileHelper().OpenFile(fileName);
         }
     }

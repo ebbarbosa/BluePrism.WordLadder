@@ -6,53 +6,28 @@ using BluePrism.WordLadder.Infrastructure.CommandLineHelpers;
 using BluePrism.WordLadder.Infrastructure.FileHelpers;
 using BluePrism.WordLadder.Infrastructure.Services;
 using BluePrism.WordLadder.Infrastructure.Validators;
+using Ninject.Modules;
 
 namespace BluePrism.WordLadder
 {
 
     /// <summary>
-    /// This class works as an IoC and DIContainer while no implementation is set.
+    /// This class works is an IoC wrapper - DI implementation of ninject.
     /// All dependencies are here so the other layers can de free from implementations and use the interfaces only.
     /// </summary>
-    public class Factory
+    public class Factory : NinjectModule
     {
-        public static IWordLadderSolver CreateWordLadderSolver()
+        public override void Load()
         {
-            return new WordLadderSolver(new GetSimilarWordsFromProcessedListService());
-        }
-
-        public static IWordDictionaryService CreateWordDictionaryService()
-        {
-            return new WordDictionaryService(CreateFileWrapper(), new DictionaryPreprocessService());
-        }
-
-        public static IFileWrapper CreateFileWrapper()
-        {
-            return new FileWrapper();
-        }
-
-        public static ICommandLineWrapper CreateCommandLineWrapper()
-        {
-            return new CommandLineWrapper();
-        }
-
-        public static IInputValidator CreateInputValidator()
-        {
-            return new InputValidator(CreateFileWrapper());
-        }
-
-        private static IOpenFileHelper CreateOpenFileWrapper()
-        {
-            return new OpenFileHelper();
-        }
-
-        public static IWordLadderApp CreateWordLadderApp()
-        {
-            return new WordLadderApp(CreateInputValidator(), 
-                                    CreateWordDictionaryService(), 
-                                    CreateWordLadderSolver(),
-                                    CreateOpenFileWrapper(),
-                                    CreateFileWrapper());
+            Bind<IFileWrapper>().To<FileWrapper>();
+            Bind<IOpenFileHelper>().To<OpenFileHelper>();
+            Bind<IInputValidator>().To<InputValidator>();
+            Bind<ICommandLineWrapper>().To<CommandLineWrapper>();
+            Bind<IDictionaryPreprocessService>().To<DictionaryPreprocessService>();
+            Bind<IGetSimilarWordsFromProcessedListService>().To<GetSimilarWordsFromProcessedListService>();
+            Bind<IWordDictionaryService>().To<WordDictionaryService>();
+            Bind<IWordLadderSolver>().To<WordLadderSolver>();
+            Bind<IWordLadderApp>().To<WordLadderApp>();
         }
     }
 }

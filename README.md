@@ -29,6 +29,8 @@ C:\...\BluePrism.WordLadder\src\publish> BluePrism.WordLadder <start word 4 lett
 
 ```
 C:\...\BluePrism.WordLadder\src\publish> BluePrism.WordLadder MUST HIRE ..\..\content\words-english.txt .\answer.txt
+```
+```
 Time taken with graphs = 2 ms
 
 Answer file created in file:///C:\...\BluePrism.WordLadder\src\publish\answer.txt
@@ -41,28 +43,27 @@ C:\...\BluePrism.WordLadder\src\publish>
 
 ##
 
-## How it works:
+### How does it work:
 
-The program pre-processes the word dictionary .txt file to generate two dictionaries: 
-	- One containing unique items of all the valid words (vertexes) and a boolean to save their visited states. 
-	- And another containing wildcard words as keys and the words they can transform into as values (adjacent edges). 
-	  i.e.: an entry --- { Key = "*IRE", Value = ["HIRE", "SIRE", "DIRE"] } - this is where the algorithm spends most of its search efforts,
-	The BFS algorithm has a time complexity of O(V + E) where V are the vertices of the tree and E the edges. In our word ladder case V would be the words in the dictionary provided 
-	and E would be the possbile transformations for the word. 
-	The space complexity for BFS is O(V) but since we preprocessed the vertices and the edges we augmented it to O(2*V) for the creation of word visited dictionary and O(4*V) = E for the preprocessed wildcards dictionary. They do not multiply because we created them in the same loop so O(2*V + 4*V) = O(6V) = O(V).
-	Since V and E are pre processed, our time performance increases to a O(V + log(E)) because we now have the adjacent edges in memory, the trade off is of course space which is more used but stays within the O(V) order.
+#### The program pre-processes the word dictionary .txt file to generate two dictionaries: 
+####	- One containing unique items of all the valid words (vertexes) as keys and a boolean value to save their visited states. 
+####	- And another containing wildcard words as keys and the words they can transform into as values (adjacent edges). i.e.: this is an entry --- { Key = "*IRE", Value = ["HIRE", "SIRE", "DIRE"] } - this is where the algorithm spends most of its efforts in creating this dictionary of edges.
+####	The BFS algorithm has a time complexity of O(V + E) where V are the vertices of the tree and E the edges. In our word ladder case V would be the words in the dictionary provided and E would be the possbile transformations for the word. 
+####	The space complexity for BFS is O(V) but since we preprocessed the vertices and the edges we augmented it to O(2*V) for the creation of word visited dictionary and O(4*V) = E for the preprocessed wildcards dictionary. They do not multiply because we created them in the same loop so O(2*V + 4*V) = O(6V) = O(V).
+####	Since V and E are pre processed, our time performance increases to a O(V + log(E)) because we now have the adjacent edges in memory, the trade off is of course space which is more used but stays within the O(V) order.
 	
 
 ## Nuget Packages used in this build:
 
-### - CommandLine			https://github.com/commandlineparser
-### - FluentValidations		https://fluentvalidation.net/
+### - <a href="https://github.com/commandlineparser">Command Line Parser</a>
+### - <a href="https://fluentvalidation.net/">Fluent Validations</a>
+### - <a href="http://www.ninject.org/">Ninject</a>
 
 ### For unit testing purposes:
-### - xUnit				https://github.com/xunit/xunit
-### - NSubstitute		https://github.com/nsubstitute/NSubstitute
-### - FluentAssertions	https://fluentassertions.com/
+### - <a href="https://github.com/xunit/xunit">xUnit</a>
+### - <a href="https://github.com/nsubstitute/NSubstitute">NSubstitute</a>
+### - <a href="https://fluentassertions.com/">Fluent Assertions</a>
 
-## Debugging Information
+### Debugging Information: 
 
-### To debug the program please check the ~\src\BluePrism.WordLadder\Properties\launchSettings.json file and change the commandLineArgs setting accordingly.
+#### To debug the program please check the ~\src\BluePrism.WordLadder\Properties\launchSettings.json file and change the commandLineArgs setting according to your specifications.

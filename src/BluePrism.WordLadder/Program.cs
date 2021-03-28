@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Reflection;
+using BluePrism.WordLadder.Application;
+using BluePrism.WordLadder.Infrastructure;
+using Ninject;
 
 namespace BluePrism.WordLadder
 {
@@ -6,11 +10,14 @@ namespace BluePrism.WordLadder
     {
         static void Main(string[] args)
         {
-            var parser = Factory.CreateCommandLineWrapper();
+            var factory = new StandardKernel();
+            factory.Load(Assembly.GetExecutingAssembly());
+
+            var parser = factory.Get<ICommandLineWrapper>();
             var argsResult = parser.GetResult(args);
             if (argsResult == null) return;
 
-            var wordLadderApp = Factory.CreateWordLadderApp();
+            var wordLadderApp = factory.Get<IWordLadderApp>();
             wordLadderApp.Execute(argsResult, err => Console.Error.WriteLine(err));
 
             Console.Write("Press any <key> to exit... ");

@@ -41,14 +41,9 @@ namespace BluePrism.WordLadder.Infrastructure.FileHelpers
                 }
                 else
                 {
-                    throw;
+                    Console.WriteLine($"This app has failed to open the file, please go to the file location at {url}.");
                 }
             }
         }
-    }
-
-    public interface IOpenFileHelper
-    {
-        void OpenFile(string url);
     }
 }
