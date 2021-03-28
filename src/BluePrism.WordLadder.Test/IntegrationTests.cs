@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using BluePrism.WordLadder.Application;
 using BluePrism.WordLadder.Domain;
 using BluePrism.WordLadder.Domain.Business;
 using BluePrism.WordLadder.Domain.Models;
@@ -49,30 +50,7 @@ namespace BluePrism.WordLadder.Test
         public void OpenFile()
         {
             var fileName = @"file:///C:/dev/git/BluePrism.WordLadder/answer.txt";
-            OpenFileHelper.OpenFile(fileName);
-        }
-
-        //todo: delete 
-        [Fact]
-        public void DEleteAfterSucceeded()
-        {
-            var result = new Solution().LadderLength("hit", "cog", new List<string>() { "hot", "dot", "dog", "lot", "log", "cog" });
-            Assert.Equal(5, result);
-        }
-
-        [Fact]
-        public void DEleteAfterSucceeded_startWordAndEndWord_inWordList()
-        {
-            var result = new Solution().LadderLength("a", "c", new List<string>() { "a", "b", "c" });
-            Assert.Equal(2, result);
-        }
-
-        [Fact]
-        public void DEleteAfterSucceeded_3startWordAndEndWord_inWordList()
-        {
-            var result = new Solution().LadderLength("aaa", "ccc", new List<string>() { "aaa", "aba", "abc", "aca", "acd", "ccd", "ccc" });
-
-            Assert.Equal(5, result);
+            new OpenFileHelper().OpenFile(fileName);
         }
     }
 }

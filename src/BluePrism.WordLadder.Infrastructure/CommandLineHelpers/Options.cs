@@ -3,7 +3,7 @@
 namespace BluePrism.WordLadder.Infrastructure.CommandLineHelpers
 {
     /// <summary>
-    /// Class to hold the program arguments.
+    /// Class where the program arguments are parsed via CommandLineParser.
     /// </summary>
     public class Options
     {

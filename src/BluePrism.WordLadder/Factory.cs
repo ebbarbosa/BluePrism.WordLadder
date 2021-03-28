@@ -1,3 +1,4 @@
+using BluePrism.WordLadder.Application;
 using BluePrism.WordLadder.Domain;
 using BluePrism.WordLadder.Domain.Business;
 using BluePrism.WordLadder.Infrastructure;
@@ -10,7 +11,8 @@ namespace BluePrism.WordLadder
 {
 
     /// <summary>
-    /// This class works as an IoC and DIContainer while no implementation is set. All dependencies are here so the other layers can de independent from implementation and use the interfaces only.
+    /// This class works as an IoC and DIContainer while no implementation is set.
+    /// All dependencies are here so the other layers can de free from implementations and use the interfaces only.
     /// </summary>
     public class Factory
     {
@@ -37,6 +39,20 @@ namespace BluePrism.WordLadder
         public static IInputValidator CreateInputValidator()
         {
             return new InputValidator(CreateFileWrapper());
+        }
+
+        private static IOpenFileHelper CreateOpenFileWrapper()
+        {
+            return new OpenFileHelper();
+        }
+
+        public static IWordLadderApp CreateWordLadderApp()
+        {
+            return new WordLadderApp(CreateInputValidator(), 
+                                    CreateWordDictionaryService(), 
+                                    CreateWordLadderSolver(),
+                                    CreateOpenFileWrapper(),
+                                    CreateFileWrapper());
         }
     }
 }
