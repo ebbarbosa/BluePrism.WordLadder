@@ -50,7 +50,7 @@ C:\...\BluePrism.WordLadder\src\publish>
 ####	- And another containing wildcard words as keys and the words they can transform into as values (adjacent edges). i.e.: this is an entry --- { Key = "*IRE", Value = ["HIRE", "SIRE", "DIRE"] } - this is where the algorithm spends most of its efforts in creating this dictionary of edges.
 ####	The BFS algorithm has a time complexity of O(V + E) where V are the vertices of the tree and E the edges. In our word ladder case V would be the words in the dictionary provided and E would be the possbile transformations for the word. 
 ####	The space complexity for BFS is O(V) but since we preprocessed the vertices and the edges we augmented it to O(2*V) for the creation of word visited dictionary and O(4*V) = E for the preprocessed wildcards dictionary. They do not multiply because we created them in the same loop so O(2*V + 4*V) = O(6V) = O(V).
-####	Since V and E are pre processed, our time performance increases to a O(V + log(E)) because we now have the adjacent edges in memory, the trade off is of course space which is more used but stays within the O(V) order.
+####	Since V and E are pre processed, our time performance enhances to a minor complexity of O(V + log(E)) because we now have the adjacent edges in memory, the trade off is of course space which is more used but stays within the O(V) order.
 	
 
 ## Nuget Packages used in this build:
