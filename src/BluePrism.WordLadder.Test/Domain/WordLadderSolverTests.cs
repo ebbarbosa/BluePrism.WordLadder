@@ -9,10 +9,9 @@ using Xunit;
 
 namespace BluePrism.WordLadder.Test.Domain
 {
-
     public class WordLadderSolverTests
     {
-        readonly IWordLadderSolver _sut;
+        private readonly IWordLadderSolver _sut;
         private readonly IGetSimilarWordsFromProcessedListService _getWordFromProcessedListService;
 
         public WordLadderSolverTests()
@@ -30,7 +29,7 @@ namespace BluePrism.WordLadder.Test.Domain
             var targetWord = "BOIL";
             var wordDic = new Dictionary<string, bool>();
             var wordDicPreProcessed = new Dictionary<string, ICollection<string>>();
-            HashSet<string> wordsFound = new HashSet<string>();
+            var wordsFound = new HashSet<string>();
 
             _getWordFromProcessedListService.GetSimiliarWords(Arg.Any<string>(),
                 Arg.Any<IDictionary<string, ICollection<string>>>()).Returns(wordsFound);
@@ -52,7 +51,7 @@ namespace BluePrism.WordLadder.Test.Domain
             var targetWord = "BOIL";
             var wordDic = new Dictionary<string, bool>()
             {
-                { "HARD" , false }
+                {"HARD", false}
             };
             var wordDicPreProcessed = new Dictionary<string, ICollection<string>>();
             _getWordFromProcessedListService.GetSimiliarWords(Arg.Any<string>(), Arg.Is(wordDicPreProcessed))
@@ -98,17 +97,19 @@ namespace BluePrism.WordLadder.Test.Domain
             // Arrange
             var firstWord = "HARE";
             var targetWord = "DARE";
-            var wordDic = new Dictionary<string, bool>() {
-                { "HARE", false },
-                { "DARE", false }
+            var wordDic = new Dictionary<string, bool>()
+            {
+                {"HARE", false},
+                {"DARE", false}
             };
-            var wordsFound = new HashSet<string>() { "HARE" };
+            var wordsFound = new HashSet<string>() {"HARE"};
             var wordDicPreProcessed = new Dictionary<string, ICollection<string>>();
 
             _getWordFromProcessedListService.GetSimiliarWords(Arg.Is(targetWord), Arg.Is(wordDicPreProcessed))
                 .Returns(wordsFound);
 
-            var expectedResult = new List<string>() {
+            var expectedResult = new List<string>()
+            {
                 firstWord, targetWord
             };
 
@@ -120,7 +121,8 @@ namespace BluePrism.WordLadder.Test.Domain
         }
 
         [Fact]
-        public void SolveLadder_WhenWordDictionary_Has3Words_AndThirdWordIsNotSimiliarToOthers_ReturnsAListWithOnlyFirstAndTargetWord()
+        public void
+            SolveLadder_WhenWordDictionary_Has3Words_AndThirdWordIsNotSimiliarToOthers_ReturnsAListWithOnlyFirstAndTargetWord()
         {
             // Arrange
             var firstWord = "BARD";
@@ -132,13 +134,14 @@ namespace BluePrism.WordLadder.Test.Domain
                 {thirdWord, false},
                 {targetWord, false}
             };
-            var wordsFound = new HashSet<string>() { "BARD" };
+            var wordsFound = new HashSet<string>() {"BARD"};
             var wordDicPreProcessed = new Dictionary<string, ICollection<string>>();
 
             _getWordFromProcessedListService.GetSimiliarWords(Arg.Is(firstWord), Arg.Is(wordDicPreProcessed))
                 .ReturnsForAnyArgs(wordsFound);
 
-            var expectedResult = new List<string>() {
+            var expectedResult = new List<string>()
+            {
                 firstWord, targetWord
             };
 
@@ -150,7 +153,8 @@ namespace BluePrism.WordLadder.Test.Domain
         }
 
         [Fact]
-        public void SolveLadder_WhenWordDictionary_HasTheTwoWordsAndALinkingWord_ReturnsAListWithThemBothAndALinkWordBetweenOrdered()
+        public void
+            SolveLadder_WhenWordDictionary_HasTheTwoWordsAndALinkingWord_ReturnsAListWithThemBothAndALinkWordBetweenOrdered()
         {
             // Arrange
             var firstWord = "HARE";
@@ -166,12 +170,13 @@ namespace BluePrism.WordLadder.Test.Domain
 
             _getWordFromProcessedListService.GetSimiliarWords(Arg.Is(targetWord),
                     Arg.Any<IDictionary<string, ICollection<string>>>())
-                .Returns(new HashSet<string>(new[] { linkWord }));
+                .Returns(new HashSet<string>(new[] {linkWord}));
             _getWordFromProcessedListService.GetSimiliarWords(Arg.Is(linkWord),
                     Arg.Any<IDictionary<string, ICollection<string>>>())
-                .Returns(new HashSet<string>(new[] { firstWord }));
+                .Returns(new HashSet<string>(new[] {firstWord}));
 
-            var expectedResult = new List<string>() {
+            var expectedResult = new List<string>()
+            {
                 firstWord, linkWord, targetWord
             };
 
@@ -189,7 +194,8 @@ namespace BluePrism.WordLadder.Test.Domain
             var firstWord = "XXXZ";
             var targetWord = "XXZZ";
 
-            var wordDic = new Dictionary<string, bool>() {
+            var wordDic = new Dictionary<string, bool>()
+            {
                 {"DARET", false},
                 {"XXXZ", false},
                 {"XXZZ", false}
@@ -198,9 +204,10 @@ namespace BluePrism.WordLadder.Test.Domain
 
             _getWordFromProcessedListService.GetSimiliarWords(Arg.Is("XXZZ"),
                     Arg.Any<IDictionary<string, ICollection<string>>>())
-                .Returns(new HashSet<string>(new[] { "XXXZ" }));
+                .Returns(new HashSet<string>(new[] {"XXXZ"}));
 
-            var expectedResult = new List<string>() {
+            var expectedResult = new List<string>()
+            {
                 firstWord, targetWord
             };
 
@@ -210,7 +217,5 @@ namespace BluePrism.WordLadder.Test.Domain
             // Assert
             result.Should().NotBeEmpty().And.ContainInOrder(expectedResult);
         }
-
-
     }
 }

@@ -5,7 +5,6 @@ namespace BluePrism.WordLadder.Domain.Extensions
 {
     public static class WordExtensions
     {
-        
         /// <summary>
         /// This method gets the Word node and generates a list containing the <paramref name="word"/> value and all its parents WordKey values. Forming the word-ladder list. 
         /// </summary>

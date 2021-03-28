@@ -9,7 +9,7 @@ namespace BluePrism.WordLadder.Infrastructure
     public interface IInputValidator
     {
         IInputValidator Validate(Options inputArgs, Action<Options> executeProgram);
-        
+
         void HandleErrors(Action<string> catchAction);
     }
 }

@@ -31,19 +31,20 @@ namespace BluePrism.WordLadder.Test.Application
             _openFileHelper = Substitute.For<IOpenFileHelper>();
             _fileWrapper = Substitute.For<IFileWrapper>();
 
-            _sut = new WordLadderApp(_inputValidator, _wordDictionaryService, _wordLadderSolver, _openFileHelper, _fileWrapper);
+            _sut = new WordLadderApp(_inputValidator, _wordDictionaryService, _wordLadderSolver, _openFileHelper,
+                _fileWrapper);
         }
 
         [Fact]
         public void Execute_ValidatesInput_InitialisesDictionarires_SolvesWordLadder_WritesAnswerFile_OpensAnswerFile()
         {
-            bool exceptionCaught = false;
+            var exceptionCaught = false;
 
-            string startWord = "sure";
-            string endWord = "HIRE";
-            string wordDictionaryFilePath = ".\\words.txt";
-            string wordLadderResultFilePath = "answers.txt";
-            Options args = new Options(startWord, endWord, wordDictionaryFilePath, wordLadderResultFilePath);
+            var startWord = "sure";
+            var endWord = "HIRE";
+            var wordDictionaryFilePath = ".\\words.txt";
+            var wordLadderResultFilePath = "answers.txt";
+            var args = new Options(startWord, endWord, wordDictionaryFilePath, wordLadderResultFilePath);
 
             IDictionary<string, bool> dictionary = new Dictionary<string, bool>()
             {
@@ -79,7 +80,7 @@ namespace BluePrism.WordLadder.Test.Application
                     {"S*TE", new[] {"SITE"}},
                     {"SIT*", new[] {"SITE"}}
                 };
-            var wordLadderSolved = new List<string>() { "SURE", "SIRE", "HIRE" };
+            var wordLadderSolved = new List<string>() {"SURE", "SIRE", "HIRE"};
 
             _inputValidator.Validate(Arg.Is<Options>(args), Arg.Invoke(args));
             _wordDictionaryService.Initialise(Arg.Is<Options>(args));
@@ -90,10 +91,7 @@ namespace BluePrism.WordLadder.Test.Application
                 .Returns(wordLadderSolved);
 
             // ACT
-            _sut.Execute(args, s =>
-            {
-                exceptionCaught = true;
-            });
+            _sut.Execute(args, s => { exceptionCaught = true; });
 
             // ASSERT
             Assert.False(exceptionCaught);
@@ -102,9 +100,9 @@ namespace BluePrism.WordLadder.Test.Application
             _wordDictionaryService.Received(1).Initialise(Arg.Is<Options>(args));
 
             _wordLadderSolver.Received(1).SolveLadder(Arg.Is(startWord),
-                                                            Arg.Is(endWord),
-                                                            Arg.Is(dictionary),
-                                                            Arg.Is(preProcessedDictionary));
+                Arg.Is(endWord),
+                Arg.Is(dictionary),
+                Arg.Is(preProcessedDictionary));
 
             _openFileHelper.Received(1).OpenFile(Arg.Is<string>(a => a.Contains(wordLadderResultFilePath)));
 

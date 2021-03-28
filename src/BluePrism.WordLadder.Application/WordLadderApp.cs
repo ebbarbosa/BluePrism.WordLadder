@@ -16,7 +16,8 @@ namespace BluePrism.WordLadder.Application
         private readonly IOpenFileHelper _openFileHelper;
         private readonly IFileWrapper _fileWrapper;
 
-        public WordLadderApp(IInputValidator inputValidator, IWordDictionaryService wordDictionaryService, IWordLadderSolver wordladderSolver, IOpenFileHelper openFileHelper, IFileWrapper fileWrapper)
+        public WordLadderApp(IInputValidator inputValidator, IWordDictionaryService wordDictionaryService,
+            IWordLadderSolver wordladderSolver, IOpenFileHelper openFileHelper, IFileWrapper fileWrapper)
         {
             _inputValidator = inputValidator;
             _wordDictionaryService = wordDictionaryService;
@@ -32,7 +33,7 @@ namespace BluePrism.WordLadder.Application
                 .HandleErrors(catchAction);
         }
 
-        void ExecuteProgram(Options argsResult)
+        private void ExecuteProgram(Options argsResult)
         {
             _wordDictionaryService.Initialise(argsResult);
 
@@ -44,18 +45,20 @@ namespace BluePrism.WordLadder.Application
             WriteResultToTxtFile(result, argsResult.WordLadderResultFilePath);
         }
 
-        void OpenFile(string wordLadderResultFilePath)
+        private void OpenFile(string wordLadderResultFilePath)
         {
             _openFileHelper.OpenFile(wordLadderResultFilePath);
         }
 
-        void WriteResultToTxtFile(IList<string> wordLadder, string filePath)
+        private void WriteResultToTxtFile(IList<string> wordLadder, string filePath)
         {
             if (!wordLadder.Any())
             {
-                Console.WriteLine(":( - Unfortunately, the word ladder returned no results. You may try again with different values.");
+                Console.WriteLine(
+                    ":( - Unfortunately, the word ladder returned no results. You may try again with different values.");
                 return;
             }
+
             _fileWrapper.Write(wordLadder, filePath);
             OpenFile(filePath);
         }

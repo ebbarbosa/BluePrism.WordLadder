@@ -44,12 +44,12 @@ namespace BluePrism.WordLadder.Infrastructure.FileHelpers
         public bool IsValidPath(string fileName)
         {
             var realPath = GetActualFilePath(fileName);
-            bool rc = Constants.Fail;
+            var rc = Constants.Fail;
             try
             {
                 using (new StreamWriter(realPath, true))
                 {
-                    rc = Constants.Pass;    
+                    rc = Constants.Pass;
                 }
             }
             catch (Exception)
@@ -69,6 +69,5 @@ namespace BluePrism.WordLadder.Infrastructure.FileHelpers
         {
             File.WriteAllLines(fileName, wordLadder);
         }
-
     }
 }

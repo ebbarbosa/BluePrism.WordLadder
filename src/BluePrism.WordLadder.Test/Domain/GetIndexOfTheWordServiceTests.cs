@@ -29,7 +29,7 @@ namespace BluePrism.WordLadder.Test.Domain
         [Fact]
         public void GetSimiliarWords_WhenWildcardWordIsFoundInThePreprocessedList_ReturnsAllPossibleWords()
         {
-            string word = "dog";
+            var word = "dog";
             var wildCardsdict = new Dictionary<string, ICollection<string>>
             {
                 {"*od", new List<string> {"lod"}},
@@ -39,16 +39,15 @@ namespace BluePrism.WordLadder.Test.Domain
                 {"do*", new List<string> {"dog", "dos"}},
                 {"*og", new List<string> {"log", "cog", "dog"}},
                 {"l*g", new List<string> {"log", "cog"}},
-                {"c*g", new List<string>{"cog"}},
-                {"co*", new List<string>{"cog"}},
-                {"*ov", new List<string>{"lov"}},
-                {"l*v", new List<string>{"lov"}},
+                {"c*g", new List<string> {"cog"}},
+                {"co*", new List<string> {"cog"}},
+                {"*ov", new List<string> {"lov"}},
+                {"l*v", new List<string> {"lov"}}
             };
 
             var resultIndex = _sut.GetSimiliarWords(word, wildCardsdict);
 
-            resultIndex.Should().BeEquivalentTo(new[] { "dog", "dos", "log", "cog" });
+            resultIndex.Should().BeEquivalentTo(new[] {"dog", "dos", "log", "cog"});
         }
-
     }
 }

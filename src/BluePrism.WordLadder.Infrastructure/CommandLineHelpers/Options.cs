@@ -21,10 +21,14 @@ namespace BluePrism.WordLadder.Infrastructure.CommandLineHelpers
         [Value(1, MetaName = "end word", Required = true, HelpText = "End word for the word ladder.")]
         public string EndWord { get; }
 
-        [Value(2, MetaName = "word dictionary file", Required = true, HelpText = "Word Dictionary file name. Please provide a path to an existing .txt file where every line is a single word.")]
+        [Value(2, MetaName = "word dictionary file", Required = true,
+            HelpText =
+                "Word Dictionary file name. Please provide a path to an existing .txt file where every line is a single word.")]
         public string WordDictionaryFilePath { get; }
 
-        [Value(3, MetaName = "word ladder output file", Required = true, HelpText = "Word Ladder output file name. Please provide a path to write the new .txt file containing the word ladder result.")]
+        [Value(3, MetaName = "word ladder output file", Required = true,
+            HelpText =
+                "Word Ladder output file name. Please provide a path to write the new .txt file containing the word ladder result.")]
         public string WordLadderResultFilePath { get; }
     }
 }

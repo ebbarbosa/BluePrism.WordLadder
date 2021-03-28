@@ -6,9 +6,9 @@ using Ninject;
 
 namespace BluePrism.WordLadder
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             var factory = new StandardKernel();
             factory.Load(Assembly.GetExecutingAssembly());

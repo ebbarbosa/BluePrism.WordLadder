@@ -8,7 +8,7 @@ namespace BluePrism.WordLadder.Test.Infrastructure
 {
     public class DictionaryPreprocessServiceTests
     {
-        readonly IDictionaryPreprocessService _sut;
+        private readonly IDictionaryPreprocessService _sut;
 
         public DictionaryPreprocessServiceTests()
         {
@@ -18,12 +18,14 @@ namespace BluePrism.WordLadder.Test.Infrastructure
         [Fact]
         public void CreatePreprocessedDictionaries_SetsWordIntoListOfWords_AndTheWordListOfPreprocessedWords()
         {
-            IDictionary<string, ICollection<string>> listOfPreprocessedWords = new Dictionary<string, ICollection<string>>();
+            IDictionary<string, ICollection<string>> listOfPreprocessedWords =
+                new Dictionary<string, ICollection<string>>();
             IDictionary<string, bool> listOfWords = new Dictionary<string, bool>();
-            string line = "a";
-            var expectedPreprocessedValues = new KeyValuePair<string, ICollection<string>>("*", new[] { line });
+            var line = "a";
+            var expectedPreprocessedValues = new KeyValuePair<string, ICollection<string>>("*", new[] {line});
 
-            _sut.CreatePreprocessedDictionaries(new DictionaryPreprocessServiceParams(line, listOfWords, listOfPreprocessedWords));
+            _sut.CreatePreprocessedDictionaries(
+                new DictionaryPreprocessServiceParams(line, listOfWords, listOfPreprocessedWords));
 
             listOfWords.Keys.Should().Contain(line);
             listOfWords.Values.Should().Contain(false);
@@ -33,18 +35,19 @@ namespace BluePrism.WordLadder.Test.Infrastructure
         }
 
         [Theory]
-        [InlineData("*", "a","b","c")]
-        public void CreatePreprocessedDictionaries_WhenCalledMultipleTimesWithCorrelatedWords_SetsSameWildcardAsKey_AndAllTheWordsToThatKeysPreprocessedWords
-            (string key,  params string[] expectedPreprocessedValues)
+        [InlineData("*", "a", "b", "c")]
+        public void
+            CreatePreprocessedDictionaries_WhenCalledMultipleTimesWithCorrelatedWords_SetsSameWildcardAsKey_AndAllTheWordsToThatKeysPreprocessedWords
+            (string key, params string[] expectedPreprocessedValues)
         {
-            IDictionary<string, ICollection<string>> listOfPreprocessedWords = new Dictionary<string, ICollection<string>>();
+            IDictionary<string, ICollection<string>> listOfPreprocessedWords =
+                new Dictionary<string, ICollection<string>>();
             IDictionary<string, bool> listOfWords = new Dictionary<string, bool>();
 
             foreach (var line in expectedPreprocessedValues)
-            {
-                _sut.CreatePreprocessedDictionaries(new DictionaryPreprocessServiceParams(line, listOfWords, listOfPreprocessedWords));    
-            }
-            
+                _sut.CreatePreprocessedDictionaries(
+                    new DictionaryPreprocessServiceParams(line, listOfWords, listOfPreprocessedWords));
+
             listOfWords.Keys.Should().Contain(expectedPreprocessedValues);
             listOfWords.Values.Should().Contain(false);
 

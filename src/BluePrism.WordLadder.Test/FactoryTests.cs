@@ -39,7 +39,8 @@ namespace BluePrism.WordLadder.Test
         }
 
         [Fact]
-        public void CreateWordDictionaryService_ReturnsWordDictionaryServiceClassImplementationOfIWordDictionaryService()
+        public void
+            CreateWordDictionaryService_ReturnsWordDictionaryServiceClassImplementationOfIWordDictionaryService()
         {
             var result = _kernel.Get<IWordDictionaryService>();
 
@@ -61,6 +62,5 @@ namespace BluePrism.WordLadder.Test
 
             result.Should().BeOfType<WordLadderApp>().And.BeAssignableTo<IWordLadderApp>();
         }
-
     }
 }

@@ -7,7 +7,6 @@ namespace BluePrism.WordLadder.Infrastructure.FileHelpers
     /// </summary>
     public class WordDictionaryStreamReader : StreamReader
     {
-
         public WordDictionaryStreamReader(string fileName) : base(fileName)
         {
         }

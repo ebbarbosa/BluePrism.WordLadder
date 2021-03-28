@@ -51,7 +51,7 @@ namespace BluePrism.WordLadder.Domain.Business
             IDictionary<string, bool> wordDictionary,
             IDictionary<string, ICollection<string>> wordOfPreprocessedWords)
         {
-            Stopwatch sw = new Stopwatch();
+            var sw = new Stopwatch();
             sw.Start();
 
             _root = new Word(targetWord);
@@ -59,7 +59,7 @@ namespace BluePrism.WordLadder.Domain.Business
             _wildCardsdict = wordOfPreprocessedWords;
 
             Solve(firstWord);
-            
+
             if (_target == null)
             {
                 Console.WriteLine("Ladder not found");
@@ -81,9 +81,9 @@ namespace BluePrism.WordLadder.Domain.Business
 
             while (queue.Count > 0)
             {
-                Word newWord = queue.Dequeue();
+                var newWord = queue.Dequeue();
 
-                string parentWord = newWord.WordKey;
+                var parentWord = newWord.WordKey;
 
                 var similarWords = _getWordFromProcessedListService.GetSimiliarWords(parentWord, _wildCardsdict);
                 if (!similarWords.Any()) continue;
@@ -95,7 +95,7 @@ namespace BluePrism.WordLadder.Domain.Business
 
                     _dict[wordFound] = true;
 
-                    Word newWordFound = new Word(wordFound, newWord);
+                    var newWordFound = new Word(wordFound, newWord);
                     queue.Enqueue(newWordFound);
 
                     if (wordFound.Equals(firstWord))

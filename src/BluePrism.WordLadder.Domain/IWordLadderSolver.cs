@@ -17,5 +17,4 @@ namespace BluePrism.WordLadder.Domain
             IDictionary<string, bool> wordDictionary,
             IDictionary<string, ICollection<string>> preprocessedWordsDictionary);
     }
-
 }

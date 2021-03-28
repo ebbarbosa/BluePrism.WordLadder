@@ -1,6 +1,5 @@
 namespace BluePrism.WordLadder.Domain.Models
 {
-
     /// <summary>
     /// Contants to be used across the program so we don't have magical numbers.
     /// </summary>

@@ -11,7 +11,9 @@ namespace BluePrism.WordLadder.Infrastructure.Services
         private readonly IFileWrapper _fileWrapper;
         private readonly IDictionaryPreprocessService _dictionaryPreprocessService;
         private readonly IDictionary<string, bool> _listOfWords = new Dictionary<string, bool>();
-        private readonly IDictionary<string, ICollection<string>> _listOfPreprocessedWords = new Dictionary<string, ICollection<string>>();
+
+        private readonly IDictionary<string, ICollection<string>> _listOfPreprocessedWords =
+            new Dictionary<string, ICollection<string>>();
 
         public WordDictionaryService(IFileWrapper fileWrapper, IDictionaryPreprocessService dictionaryPreprocessService)
         {
@@ -27,12 +29,13 @@ namespace BluePrism.WordLadder.Infrastructure.Services
 
             using (var sr = _fileWrapper.StreamReader(options.WordDictionaryFilePath))
             {
-                string line = "";
+                var line = "";
 
                 while ((line = sr.ReadLine()) != null)
                 {
                     if (line.Length != options.StartWord.Length) continue;
-                    _dictionaryPreprocessService.CreatePreprocessedDictionaries(new DictionaryPreprocessServiceParams(line, _listOfWords, _listOfPreprocessedWords));
+                    _dictionaryPreprocessService.CreatePreprocessedDictionaries(
+                        new DictionaryPreprocessServiceParams(line, _listOfWords, _listOfPreprocessedWords));
                 }
             }
         }

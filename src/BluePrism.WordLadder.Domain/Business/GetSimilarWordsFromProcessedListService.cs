@@ -22,7 +22,7 @@ namespace BluePrism.WordLadder.Domain.Business
                 var nodesFound = preprocessedWords[wildcardWord];
                 words.UnionWith(nodesFound);
             }
-            
+
             return words;
         }
     }

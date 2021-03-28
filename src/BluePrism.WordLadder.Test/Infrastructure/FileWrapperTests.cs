@@ -12,8 +12,7 @@ namespace BluePrism.WordLadder.Test.Infrastructure
 
         public FileWrapperTests()
         {
-
-            this._fileWrapper = new FileWrapperTester();
+            _fileWrapper = new FileWrapperTester();
         }
 
         [Fact]
@@ -21,7 +20,7 @@ namespace BluePrism.WordLadder.Test.Infrastructure
         {
             // Arrange
             IList<string> wordLadder = new List<string>() { };
-            string fileName = "someFileName";
+            var fileName = "someFileName";
 
             // Act 
             _fileWrapper.Write(wordLadder, fileName);
@@ -35,7 +34,7 @@ namespace BluePrism.WordLadder.Test.Infrastructure
         public void FileExists_WhenFileExists_ReturnsTrue()
         {
             // Arrange
-            string fileName = ".\\content\\words-english.txt";
+            var fileName = ".\\content\\words-english.txt";
 
             // Act 
             var result = _fileWrapper.FileExists(fileName);
@@ -48,7 +47,7 @@ namespace BluePrism.WordLadder.Test.Infrastructure
         public void Validate_WhenFileDoesNotExist_ReturnsFalse()
         {
             // Arrange
-            string fileName = "someFileName";
+            var fileName = "someFileName";
 
             // Act 
             var result = _fileWrapper.FileExists(fileName);
@@ -61,7 +60,7 @@ namespace BluePrism.WordLadder.Test.Infrastructure
         public void IsValidPath_WhenPathIsValid_ReturnsTrue()
         {
             // Arrange
-            string fileName = "./word-ladder.txt";
+            var fileName = "./word-ladder.txt";
 
             // Act 
             var result = _fileWrapper.IsValidPath(fileName);
@@ -74,7 +73,7 @@ namespace BluePrism.WordLadder.Test.Infrastructure
         public void IsValidPath_WhenPathIsInvalid_ReturnsFalse()
         {
             // Arrange
-            string fileName = "!!!<<>>someFileName.txt";
+            var fileName = "!!!<<>>someFileName.txt";
 
             // Act 
             var result = _fileWrapper.IsValidPath(fileName);
@@ -87,7 +86,7 @@ namespace BluePrism.WordLadder.Test.Infrastructure
         public void StreamReader()
         {
             // Arrange
-            string fileName = $"{Directory.GetCurrentDirectory()}\\content\\words-english.txt";
+            var fileName = $"{Directory.GetCurrentDirectory()}\\content\\words-english.txt";
 
             // Act 
             var streamReader = _fileWrapper.StreamReader(fileName);
@@ -99,4 +98,3 @@ namespace BluePrism.WordLadder.Test.Infrastructure
         }
     }
 }
-

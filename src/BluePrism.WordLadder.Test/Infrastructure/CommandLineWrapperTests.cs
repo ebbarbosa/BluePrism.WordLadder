@@ -13,17 +13,18 @@ namespace BluePrism.WordLadder.Test.Infrastructure
     public class CommandLineWrapperTests
     {
         private CommandLineWrapper _sut;
-        
+
         [Fact]
         public void GetResults_When_CorrectArgsArePassed_ReturnsCorrectOptions()
         {
             // Arrange 
-            string beginWord = "SORT";
-            string targetWord = "HIRE";
-            string inputFileName = "c:\\input"; ;
-            string outputFileName = "c:\\output";
+            var beginWord = "SORT";
+            var targetWord = "HIRE";
+            var inputFileName = "c:\\input";
+            ;
+            var outputFileName = "c:\\output";
 
-            var args = new[] { beginWord, targetWord, inputFileName, outputFileName };
+            var args = new[] {beginWord, targetWord, inputFileName, outputFileName};
 
             var expectedResult = new Options(beginWord, targetWord, inputFileName, outputFileName);
 

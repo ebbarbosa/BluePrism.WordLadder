@@ -3,10 +3,8 @@ using System.Text;
 
 namespace BluePrism.WordLadder.Domain.Extensions
 {
-
     public static class StringExtensions
     {
-
         /// <summary>
         /// This method creates all possible transformations for a word, replacing each letter with a wildcard char '*'.
         /// </summary>
@@ -18,9 +16,9 @@ namespace BluePrism.WordLadder.Domain.Extensions
             var result = new List<string>();
 
             var newWord = self;
-            for (int letterIndex = 0; letterIndex < self.Length; letterIndex++)
+            for (var letterIndex = 0; letterIndex < self.Length; letterIndex++)
             {
-                var wildCardString = new StringBuilder(newWord) { [letterIndex] = '*' };
+                var wildCardString = new StringBuilder(newWord) {[letterIndex] = '*'};
                 newWord = wildCardString.ToString();
 
                 result.Add(newWord);

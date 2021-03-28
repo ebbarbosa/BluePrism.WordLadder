@@ -11,7 +11,6 @@ using Xunit;
 
 namespace BluePrism.WordLadder.Test.Infrastructure
 {
-
     public class WordDictionaryTests
     {
         private readonly IWordDictionaryService _sut;
@@ -38,7 +37,8 @@ namespace BluePrism.WordLadder.Test.Infrastructure
             var wordDictionary = new WordDictionaryService(_fileWrapper, _dictionaryPreprocessService);
 
             // Act & Assert
-            Assert.Throws<FileNotFoundException>(() => wordDictionary.Initialise(new Options(startWord, endWord, fileName, "answer.txt")));
+            Assert.Throws<FileNotFoundException>(() =>
+                wordDictionary.Initialise(new Options(startWord, endWord, fileName, "answer.txt")));
         }
 
         [Fact]
@@ -58,22 +58,24 @@ namespace BluePrism.WordLadder.Test.Infrastructure
             // Arrange
             _fileWrapper.FileExists(Arg.Any<string>());
 
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             sb.AppendLine("A");
             sb.AppendLine("B");
             sb.AppendLine("C");
-            byte[] wordDictionaryFile = Encoding.UTF8.GetBytes(sb.ToString());
+            var wordDictionaryFile = Encoding.UTF8.GetBytes(sb.ToString());
             var fakeMemoryStream = new MemoryStream(wordDictionaryFile);
 
             StreamReader stream = null;
-            _fileWrapper.StreamReader(Arg.Any<string>()).Returns(stream = new WordDictionaryStreamReader(fakeMemoryStream));
+            _fileWrapper.StreamReader(Arg.Any<string>())
+                .Returns(stream = new WordDictionaryStreamReader(fakeMemoryStream));
 
             _dictionaryPreprocessService
                 .When(service => service.CreatePreprocessedDictionaries(Arg.Is(
-                                                new DictionaryPreprocessServiceParams("A",
-                                        new Dictionary<string, bool>(),
-                                new Dictionary<string, ICollection<string>>()))))
-                .Do(d => d.ArgAt<DictionaryPreprocessServiceParams>(0).ListOfPreprocessedWords.Add("*", new List<string>() { "A", "B", "C" }));
+                    new DictionaryPreprocessServiceParams("A",
+                        new Dictionary<string, bool>(),
+                        new Dictionary<string, ICollection<string>>()))))
+                .Do(d => d.ArgAt<DictionaryPreprocessServiceParams>(0).ListOfPreprocessedWords
+                    .Add("*", new List<string>() {"A", "B", "C"}));
 
             // Act
             var result = _sut.GetPreprocessedWordsDictionary();

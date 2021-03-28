@@ -32,7 +32,7 @@ namespace BluePrism.WordLadder.Infrastructure.FileHelpers
                 if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 {
                     fileName = fileName.Replace("&", "^&");
-                    Process.Start(new ProcessStartInfo("cmd", $"/c start {fileName}") { CreateNoWindow = true });
+                    Process.Start(new ProcessStartInfo("cmd", $"/c start {fileName}") {CreateNoWindow = true});
                 }
                 else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
                 {

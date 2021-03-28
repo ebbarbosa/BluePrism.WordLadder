@@ -9,7 +9,8 @@ namespace BluePrism.WordLadder.Infrastructure.Validators
     {
         public FileExistsValidator(IFileWrapper fileWrapper)
         {
-            RuleFor(p => p).Must(fileWrapper.FileExists).WithMessage(fn => $"Unable to find the specified file {fn}. Please provide an existing word dictionary file.");
+            RuleFor(p => p).Must(fileWrapper.FileExists).WithMessage(fn =>
+                $"Unable to find the specified file {fn}. Please provide an existing word dictionary file.");
         }
     }
 }

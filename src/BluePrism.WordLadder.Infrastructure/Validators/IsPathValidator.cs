@@ -9,8 +9,10 @@ namespace BluePrism.WordLadder.Infrastructure.Validators
     {
         public IsPathValidator(IFileWrapper fileWrapper)
         {
-            RuleFor(p => p).Must(fileWrapper.HasTxtExtension).WithMessage(fn => $"The provided file path {fn} is not valid. Please provide a valid file path with a .txt extension for the answer file.");
-            RuleFor(p => p).Must(fileWrapper.IsValidPath).WithMessage(fn => $"The provided file path {fn} is not valid. Please provide a valid file path for the answer file.");
+            RuleFor(p => p).Must(fileWrapper.HasTxtExtension).WithMessage(fn =>
+                $"The provided file path {fn} is not valid. Please provide a valid file path with a .txt extension for the answer file.");
+            RuleFor(p => p).Must(fileWrapper.IsValidPath).WithMessage(fn =>
+                $"The provided file path {fn} is not valid. Please provide a valid file path for the answer file.");
         }
     }
 }

@@ -6,7 +6,6 @@ using FluentValidation.Results;
 
 namespace BluePrism.WordLadder.Infrastructure.Validators
 {
-
     /// <summary>
     /// Implementation that validates the program input arguments and publicizes a continuation action and an error handler action to the caller.
     /// </summary>
@@ -45,7 +44,7 @@ namespace BluePrism.WordLadder.Infrastructure.Validators
             }
             catch (Exception ex)
             {
-                _result = new ValidationResult(new[] { new ValidationFailure(Constants.AppName, ex.Message) });
+                _result = new ValidationResult(new[] {new ValidationFailure(Constants.AppName, ex.Message)});
             }
 
             return this;
@@ -69,10 +68,7 @@ namespace BluePrism.WordLadder.Infrastructure.Validators
         public void HandleErrors(Action<string> catchAction)
         {
             if (_result == null) return;
-            foreach (var failure in _result.Errors)
-            {
-                catchAction(failure.ErrorMessage);
-            }
+            foreach (var failure in _result.Errors) catchAction(failure.ErrorMessage);
         }
     }
 }

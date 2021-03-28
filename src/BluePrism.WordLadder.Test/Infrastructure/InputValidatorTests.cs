@@ -35,14 +35,11 @@ namespace BluePrism.WordLadder.Test.Infrastructure
             // Arrange 
             var startWord = "ABCD";
             var endWord = "WXYZ";
-            bool executing = false;
+            var executing = false;
 
-            Options args = new Options(startWord, endWord, _validWordDictionaryFilePath, _validWordLadderFilePath);
-            
-            _sut.Validate(args, (args) =>
-            {
-                executing = true;
-            });
+            var args = new Options(startWord, endWord, _validWordDictionaryFilePath, _validWordLadderFilePath);
+
+            _sut.Validate(args, (args) => { executing = true; });
 
             Assert.True(executing);
         }
@@ -53,20 +50,14 @@ namespace BluePrism.WordLadder.Test.Infrastructure
             // Arrange 
             var startWord = "AABCD";
             var endWord = "WXYZ";
-            bool executing = false;
-            Options args = new Options(startWord, endWord, _validWordDictionaryFilePath, _validWordLadderFilePath);
+            var executing = false;
+            var args = new Options(startWord, endWord, _validWordDictionaryFilePath, _validWordLadderFilePath);
 
             var expectedError = "'Start Word' must be 4 characters in length. You entered 5 characters.";
             string actualError = null;
 
             // act
-            _sut.Validate(args, (options) =>
-            {
-                executing = true;
-            }).HandleErrors(str =>
-            {
-                actualError = str;
-            });
+            _sut.Validate(args, (options) => { executing = true; }).HandleErrors(str => { actualError = str; });
 
             // assert
             Assert.False(executing);
@@ -79,21 +70,15 @@ namespace BluePrism.WordLadder.Test.Infrastructure
             // Arrange 
             var startWord = "ABCD";
             var endWord = "WXYZA";
-            bool executing = false;
-            Options args = new Options(startWord, endWord, _validWordDictionaryFilePath, _validWordLadderFilePath);
+            var executing = false;
+            var args = new Options(startWord, endWord, _validWordDictionaryFilePath, _validWordLadderFilePath);
 
             var expectedError = "'End Word' must be 4 characters in length. You entered 5 characters.";
             string actualError = null;
 
-            
+
             // act
-            _sut.Validate(args, (args) =>
-            {
-                executing = true;
-            }).HandleErrors((str) =>
-            {
-                actualError = str;
-            });
+            _sut.Validate(args, (args) => { executing = true; }).HandleErrors((str) => { actualError = str; });
 
             // assert
             Assert.False(executing);
@@ -107,23 +92,18 @@ namespace BluePrism.WordLadder.Test.Infrastructure
             var wordDictionaryFilePath = @"%TEMP%/teste.txt";
             var startWord = "ABCD";
             var endWord = "WXYZA";
-            bool executing = false;
+            var executing = false;
 
-            Options args = new Options(startWord, endWord, wordDictionaryFilePath, _validWordLadderFilePath);
+            var args = new Options(startWord, endWord, wordDictionaryFilePath, _validWordLadderFilePath);
 
-            var expectedError = $"Unable to find the specified file {wordDictionaryFilePath}. Please provide an existing word dictionary file.";
+            var expectedError =
+                $"Unable to find the specified file {wordDictionaryFilePath}. Please provide an existing word dictionary file.";
             string actualError = null;
 
             _fileWrapper.FileExists(Arg.Is(wordDictionaryFilePath)).Returns(false);
 
             // act
-            _sut.Validate(args, (args) =>
-            {
-                executing = true;
-            }).HandleErrors((str) =>
-            {
-                actualError = str;
-            });
+            _sut.Validate(args, (args) => { executing = true; }).HandleErrors((str) => { actualError = str; });
 
             // assert
             Assert.False(executing);
@@ -136,22 +116,17 @@ namespace BluePrism.WordLadder.Test.Infrastructure
             // Arrange 
             var startWord = "ABCD";
             var endWord = "WXYA";
-            bool executing = false;
-            string wordLadderResultFilePath = @"<>testtxt.txt";
+            var executing = false;
+            var wordLadderResultFilePath = @"<>testtxt.txt";
 
-            Options args = new Options(startWord, endWord, _validWordDictionaryFilePath, wordLadderResultFilePath);
+            var args = new Options(startWord, endWord, _validWordDictionaryFilePath, wordLadderResultFilePath);
 
-            var expectedError = $"The provided file path {wordLadderResultFilePath} is not valid. Please provide a valid file path for the answer file.";
+            var expectedError =
+                $"The provided file path {wordLadderResultFilePath} is not valid. Please provide a valid file path for the answer file.";
             string actualError = null;
 
             // act
-            _sut.Validate(args, (options) =>
-            {
-                executing = true;
-            }).HandleErrors((str) =>
-            {
-                actualError = str;
-            });
+            _sut.Validate(args, (options) => { executing = true; }).HandleErrors((str) => { actualError = str; });
 
             // assert
             Assert.False(executing);
@@ -164,10 +139,10 @@ namespace BluePrism.WordLadder.Test.Infrastructure
             // Arrange 
             var startWord = "ABCD";
             var endWord = "WXYA";
-            bool executing = false;
-            string wordLadderResultFilePath = "teste.bin";
+            var executing = false;
+            var wordLadderResultFilePath = "teste.bin";
 
-            Options args = new Options(startWord, endWord, _validWordDictionaryFilePath, wordLadderResultFilePath);
+            var args = new Options(startWord, endWord, _validWordDictionaryFilePath, wordLadderResultFilePath);
 
             var expectedError =
                 $"The provided file path {wordLadderResultFilePath} is not valid. Please provide a valid file path with a .txt extension for the answer file.";
@@ -179,13 +154,7 @@ namespace BluePrism.WordLadder.Test.Infrastructure
             _fileWrapper.HasTxtExtension(Arg.Is(wordLadderResultFilePath)).Returns(false);
 
             // act
-            _sut.Validate(args, (options) =>
-            {
-                executing = true;
-            }).HandleErrors((str) =>
-            {
-                actualError = str;
-            });
+            _sut.Validate(args, (options) => { executing = true; }).HandleErrors((str) => { actualError = str; });
 
             // assert
             Assert.False(executing);

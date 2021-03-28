@@ -15,7 +15,7 @@ namespace BluePrism.WordLadder.Test
 {
     public class IntegrationTests
     {
-        readonly IWordLadderSolver _sut;
+        private readonly IWordLadderSolver _sut;
 
         public IntegrationTests()
         {
@@ -29,7 +29,7 @@ namespace BluePrism.WordLadder.Test
             var beginWord = "SATE";
             var targetWord = "COST";
 
-            string path = Directory.GetCurrentDirectory();
+            var path = Directory.GetCurrentDirectory();
             var fileName = $"{path}//content//words-english.txt";
 
             var answerFile = $"{path}//answer.txt";
@@ -37,10 +37,11 @@ namespace BluePrism.WordLadder.Test
             var wordDicService = new WordDictionaryService(new FileWrapper(), new DictionaryPreprocessService());
             wordDicService.Initialise(new Options(beginWord, targetWord, fileName, answerFile));
 
-            var expectedResult = new List<string>() { "SATE", "LATE", "LASE", "LAST", "LOST", "COST" };
+            var expectedResult = new List<string>() {"SATE", "LATE", "LASE", "LAST", "LOST", "COST"};
 
             // Act
-            var result = _sut.SolveLadder(beginWord, targetWord, wordDicService.GetWordDictionary(), wordDicService.GetPreprocessedWordsDictionary());
+            var result = _sut.SolveLadder(beginWord, targetWord, wordDicService.GetWordDictionary(),
+                wordDicService.GetPreprocessedWordsDictionary());
 
             // Assert
             result.Should().NotBeEmpty().And.ContainInOrder(expectedResult);

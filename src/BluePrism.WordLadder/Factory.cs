@@ -10,7 +10,6 @@ using Ninject.Modules;
 
 namespace BluePrism.WordLadder
 {
-
     /// <summary>
     /// This class works is an IoC wrapper - DI implementation of ninject.
     /// All dependencies are here so the other layers can de free from implementations and use the interfaces only.
