@@ -2,7 +2,7 @@
   "profiles": {
     "BluePrism.WordLadder": {
       "commandName": "Project",
-      "commandLineArgs": "SAME COST ..\\content\\words-englush.txt .\\answer.txt"
+      "commandLineArgs": "mUsT hIRe ..\\..\\..\\..\\..\\content\\words-english.txt .\\answer.txt"
     }
   }
 }

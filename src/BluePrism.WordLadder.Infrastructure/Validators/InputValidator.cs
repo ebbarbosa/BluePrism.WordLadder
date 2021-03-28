@@ -39,9 +39,7 @@ namespace BluePrism.WordLadder.Infrastructure.Validators
                     return this;
                 }
 
-                var wordDictionaryFilePathValidated = Path.GetFullPath(inputArgs.WordDictionaryFilePath);
-                var wordLadderResultFilePathValidated = Path.GetFullPath(inputArgs.WordLadderResultFilePath);
-                var argsResultValidated = new Options(inputArgs.StartWord, inputArgs.EndWord, wordDictionaryFilePathValidated, wordLadderResultFilePathValidated);
+                var argsResultValidated = TransformOptions(inputArgs);
 
                 executeProgram(argsResultValidated);
             }
@@ -51,6 +49,17 @@ namespace BluePrism.WordLadder.Infrastructure.Validators
             }
 
             return this;
+        }
+
+        private static Options TransformOptions(Options inputArgs)
+        {
+            var startWord = inputArgs.StartWord.ToUpper();
+            var endWord = inputArgs.EndWord.ToUpper();
+            var wordDictionaryFilePathValidated = Path.GetFullPath(inputArgs.WordDictionaryFilePath);
+            var wordLadderResultFilePathValidated = Path.GetFullPath(inputArgs.WordLadderResultFilePath);
+            var argsResultValidated = new Options(startWord, endWord, wordDictionaryFilePathValidated,
+                wordLadderResultFilePathValidated);
+            return argsResultValidated;
         }
 
         /// <summary>

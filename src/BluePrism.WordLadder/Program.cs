@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using BluePrism.WordLadder.Infrastructure.CommandLineHelpers;
-using BluePrism.WordLadder.Infrastructure.FileHelpers;
+using System.Reflection;
+using BluePrism.WordLadder.Application;
+using BluePrism.WordLadder.Infrastructure;
+using Ninject;
 
 namespace BluePrism.WordLadder
 {
@@ -10,50 +10,18 @@ namespace BluePrism.WordLadder
     {
         static void Main(string[] args)
         {
-            var parser = Factory.CreateCommandLineWrapper();
+            var factory = new StandardKernel();
+            factory.Load(Assembly.GetExecutingAssembly());
+
+            var parser = factory.Get<ICommandLineWrapper>();
             var argsResult = parser.GetResult(args);
             if (argsResult == null) return;
 
-            var inputValidator = Factory.CreateInputValidator();
-            inputValidator
-                .Validate(argsResult, ExecuteProgram)
-                .HandleErrors(Console.Error.WriteLine);
+            var wordLadderApp = factory.Get<IWordLadderApp>();
+            wordLadderApp.Execute(argsResult, err => Console.Error.WriteLine(err));
 
             Console.Write("Press any <key> to exit... ");
             Console.ReadKey();
-        }
-
-        static void ExecuteProgram(Options argsResult)
-        {
-            var wordDictionaryService = Factory.CreateWordDictionaryService();
-            wordDictionaryService.Initialise(argsResult);
-
-            var wordladderSolver = Factory.CreateWordLadderSolver();
-            var result = wordladderSolver.SolveLadder(argsResult.StartWord,
-                argsResult.EndWord,
-                wordDictionaryService.GetWordDictionary(),
-                wordDictionaryService.GetPreprocessedWordsDictionary());
-
-            WriteResultToTxtFile(result, argsResult.WordLadderResultFilePath);
-            OpenFile(argsResult.WordLadderResultFilePath);
-        }
-
-        static void OpenFile(string wordLadderResultFilePath)
-        {
-            var fileName = @$"file:///{wordLadderResultFilePath}";
-            OpenFileHelper.OpenFile(fileName);
-        }
-
-        static void WriteResultToTxtFile(IList<string> wordLadder, string filePath)
-        {
-            if (!wordLadder.Any())
-            {
-                Console.WriteLine(":( - Unfortunately, the word ladder returned no results. You may try again with different values.");
-                return;
-            }
-
-            var fileWrapper = Factory.CreateFileWrapper();
-            fileWrapper.Write(wordLadder, filePath);
         }
     }
 }
