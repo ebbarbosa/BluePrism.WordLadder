@@ -39,7 +39,7 @@ namespace BluePrism.WordLadder.Test.Application
         {
             bool exceptionCaught = false;
 
-            string startWord = "SURE";
+            string startWord = "sure";
             string endWord = "HIRE";
             string wordDictionaryFilePath = ".\\words.txt";
             string wordLadderResultFilePath = "answers.txt";

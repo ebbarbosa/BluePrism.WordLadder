@@ -2,7 +2,7 @@
   "profiles": {
     "BluePrism.WordLadder": {
       "commandName": "Project",
-      "commandLineArgs": "MUST HIRE ..\\..\\..\\..\\..\\content\\words-english.txt .\\answer.txt"
+      "commandLineArgs": "mUsT hIRe ..\\..\\..\\..\\..\\content\\words-english.txt .\\answer.txt"
     }
   }
 }
