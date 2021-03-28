@@ -14,7 +14,7 @@ namespace BluePrism.WordLadder.Test
 {
     public class FactoryTests
     {
-        private StandardKernel _kernel;
+        private readonly StandardKernel _kernel;
 
         public FactoryTests()
         {

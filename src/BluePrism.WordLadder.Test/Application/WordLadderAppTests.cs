@@ -16,7 +16,7 @@ namespace BluePrism.WordLadder.Test.Application
 {
     public class WordLadderAppTests
     {
-        private WordLadderApp _sut;
+        private readonly WordLadderApp _sut;
         private readonly IInputValidator _inputValidator;
         private readonly IWordDictionaryService _wordDictionaryService;
         private readonly IWordLadderSolver _wordLadderSolver;

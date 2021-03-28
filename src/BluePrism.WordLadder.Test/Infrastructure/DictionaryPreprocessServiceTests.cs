@@ -48,7 +48,7 @@ namespace BluePrism.WordLadder.Test.Infrastructure
             listOfWords.Keys.Should().Contain(expectedPreprocessedValues);
             listOfWords.Values.Should().Contain(false);
 
-            listOfPreprocessedWords.Keys.Should().Contain("*");
+            listOfPreprocessedWords.Keys.Should().Contain(key);
             listOfPreprocessedWords.Values.Should().AllBeEquivalentTo(expectedPreprocessedValues);
         }
     }
