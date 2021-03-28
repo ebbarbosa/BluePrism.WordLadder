@@ -2,6 +2,6 @@
 {
     public interface IOpenFileHelper
     {
-        void OpenFile(string url);
+        void OpenFile(string fileName);
     }
 }

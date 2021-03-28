@@ -47,8 +47,7 @@ namespace BluePrism.WordLadder.Application
 
         void OpenFile(string wordLadderResultFilePath)
         {
-            var fileName = $"file:///{wordLadderResultFilePath}";
-            _openFileHelper.OpenFile(fileName);
+            _openFileHelper.OpenFile(wordLadderResultFilePath);
         }
 
         void WriteResultToTxtFile(IList<string> wordLadder, string filePath)
