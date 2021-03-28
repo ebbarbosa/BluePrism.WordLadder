@@ -42,7 +42,6 @@ namespace BluePrism.WordLadder.Application
                 _wordDictionaryService.GetPreprocessedWordsDictionary());
 
             WriteResultToTxtFile(result, argsResult.WordLadderResultFilePath);
-            OpenFile(argsResult.WordLadderResultFilePath);
         }
 
         void OpenFile(string wordLadderResultFilePath)
@@ -58,6 +57,7 @@ namespace BluePrism.WordLadder.Application
                 return;
             }
             _fileWrapper.Write(wordLadder, filePath);
+            OpenFile(filePath);
         }
     }
 }
