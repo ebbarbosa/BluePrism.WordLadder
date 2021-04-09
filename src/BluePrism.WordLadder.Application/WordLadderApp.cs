@@ -13,27 +13,27 @@ namespace BluePrism.WordLadder.Application
         private readonly IInputValidator _inputValidator;
         private readonly IWordDictionaryService _wordDictionaryService;
         private readonly IWordLadderSolver _wordladderSolver;
-        private readonly IOpenFileHelper _openFileHelper;
-        private readonly IFileWrapper _fileWrapper;
 
         public WordLadderApp(IInputValidator inputValidator, IWordDictionaryService wordDictionaryService,
-            IWordLadderSolver wordladderSolver, IOpenFileHelper openFileHelper, IFileWrapper fileWrapper)
+            IWordLadderSolver wordladderSolver)
         {
             _inputValidator = inputValidator;
             _wordDictionaryService = wordDictionaryService;
             _wordladderSolver = wordladderSolver;
-            _openFileHelper = openFileHelper;
-            _fileWrapper = fileWrapper;
         }
 
-        public void Execute(Options args, Action<string> catchAction)
+        public IList<string> GetResult(Options args, Action<string> catchAction)
         {
+            IList<string> result = new List<string>();
+
             _inputValidator
-                .Validate(args, ExecuteProgram)
+                .Validate(args, opt => result = ExecuteProgram(opt))
                 .HandleErrors(catchAction);
+
+            return result;
         }
 
-        private void ExecuteProgram(Options argsResult)
+        private IList<string> ExecuteProgram(Options argsResult)
         {
             _wordDictionaryService.Initialise(argsResult);
 
@@ -42,25 +42,7 @@ namespace BluePrism.WordLadder.Application
                 _wordDictionaryService.GetWordDictionary(),
                 _wordDictionaryService.GetPreprocessedWordsDictionary());
 
-            WriteResultToTxtFile(result, argsResult.WordLadderResultFilePath);
-        }
-
-        private void OpenFile(string wordLadderResultFilePath)
-        {
-            _openFileHelper.OpenFile(wordLadderResultFilePath);
-        }
-
-        private void WriteResultToTxtFile(IList<string> wordLadder, string filePath)
-        {
-            if (!wordLadder.Any())
-            {
-                Console.WriteLine(
-                    ":( - Unfortunately, the word ladder returned no results. You may try again with different values.");
-                return;
-            }
-
-            _fileWrapper.Write(wordLadder, filePath);
-            OpenFile(filePath);
+            return result;
         }
     }
 }

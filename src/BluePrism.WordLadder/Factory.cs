@@ -27,6 +27,7 @@ namespace BluePrism.WordLadder
             Bind<IWordDictionaryService>().To<WordDictionaryService>();
             Bind<IWordLadderSolver>().To<WordLadderSolver>();
             Bind<IWordLadderApp>().To<WordLadderApp>();
+            Bind<IOutputService>().To<ResultFileWriter>();
         }
     }
 }
