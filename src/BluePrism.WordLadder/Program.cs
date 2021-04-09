@@ -18,7 +18,10 @@ namespace BluePrism.WordLadder
             if (argsResult == null) return;
 
             var wordLadderApp = factory.Get<IWordLadderApp>();
-            wordLadderApp.Execute(argsResult, err => Console.Error.WriteLine(err));
+            var result = wordLadderApp.GetResult(argsResult, err => Console.Error.WriteLine(err));
+
+            var outputService = factory.Get<IOutputService>();
+            outputService.Execute(result, argsResult);
 
             Console.Write("Press any <key> to exit... ");
             Console.ReadKey();
