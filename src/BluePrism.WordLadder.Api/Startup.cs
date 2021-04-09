@@ -63,7 +63,7 @@ namespace BluePrism.WordLadder.Api
 
             app.UseRouting();
 
-            //app.UseAuthorization();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

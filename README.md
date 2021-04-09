@@ -17,9 +17,9 @@
 #### Usage:
 
 #### WebApi:
-#####	After cloning this repository, run the webApi and try the GET method available in the swagger interface.
+#####	After cloning this repository, run the webApi and try the GET method available in the swagger interface or via curl.
 ```
-curl -X GET "https://localhost:5001/WordLadder?startWord=unit&endWord=cost" -H  "accept: text/plain"
+curl -X GET "https://localhost:5001/WordLadder?startWord=pint&endWord=axis" -H  "accept: text/plain"
 ```
 
 #### Console:
