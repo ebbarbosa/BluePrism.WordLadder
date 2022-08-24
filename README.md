@@ -1,16 +1,28 @@
 # BluePrism.WordLadder
 
-## This is a console program written in C# to solve a Word Ladder - part of Blue Prism developers tests. 
+## This project has a web api and a console program written in C# to solve a Word Ladder - part of Blue Prism developers tests. 
 
 ### It uses a Breadth First Search algorithm (https://en.wikipedia.org/wiki/Breadth-first_search), to find the shortest-path since the word ladder is an unweighted bidirectional graph.
 
-### The program takes four arguments:
+### The console program takes four arguments:
 	- The first word of the word ladder
 	- The target word of the word ladder
 	- The file name for the dictionary of words to be used as steps.
 	- The file name to be created as output for the word ladder result.
 
+### The web api has a get method with two arguments and it uses a standard dictionary provided by BluePrism:
+	- The first word of the word ladder
+	- The target word of the word ladder
+
 #### Usage:
+
+#### WebApi:
+#####	After cloning this repository, run the webApi and try the GET method available in the swagger interface or via curl.
+```
+curl -X GET "https://localhost:5001/WordLadder?startWord=pint&endWord=axis" -H  "accept: text/plain"
+```
+
+#### Console:
 #####	After cloning this repository, go to the src folder in your local machine and run dotnet publish:
 
 ```
