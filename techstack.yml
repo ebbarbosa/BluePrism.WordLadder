@@ -1,0 +1,193 @@
+repo_name: ebbarbosa/BluePrism.WordLadder
+report_id: 116fa51c09ed9bf49e4dcd0d2dae1b47
+version: 0.1
+repo_type: Public
+timestamp: '2024-03-12T22:32:19+00:00'
+requested_by: ebbarbosa
+provider: github
+branch: master
+detected_tools_count: 14
+tools:
+- name: C#
+  description: Simple, general-purpose, object-oriented programming language for the
+    .NET platform
+  website_url: http://csharp.net
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Languages
+  image_url: https://img.stackshare.io/service/1015/1200px-C_Sharp_wordmark.svg.png
+  detection_source_url: https://github.com/ebbarbosa/BluePrism.WordLadder
+  detection_source: Repo Metadata
+- name: ".NET"
+  description: A free, cross-platform, open source developer platform for building
+    many different types of applications
+  website_url: http://www.microsoft.com/net/
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Frameworks (Full Stack)
+  image_url: https://img.stackshare.io/service/1014/IoPy1dce_400x400.png
+  detection_source_url: https://github.com/ebbarbosa/BluePrism.WordLadder/blob/master/src/BluePrism.WordLadder/BluePrism.WordLadder.csproj
+  detection_source: src/BluePrism.WordLadder/BluePrism.WordLadder.csproj
+  last_updated_by: Eduardo
+  last_updated_on: 2021-03-24 01:45:22.000000000 Z
+- name: ".NET Core"
+  description: An Open Source, General-Purpose Development Platform Maintained by
+    Microsoft and the .NET Community
+  website_url: https://docs.microsoft.com/en-us/dotnet/core/
+  version: '5.0'
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Frameworks (Full Stack)
+  image_url: https://img.stackshare.io/service/6403/default_91fc1f0ee315262794273aa1387eaf8fed8436e6.png
+  detection_source_url: https://github.com/ebbarbosa/BluePrism.WordLadder/blob/master/src/BluePrism.WordLadder.Api/BluePrism.WordLadder.Api.csproj
+  detection_source: src/BluePrism.WordLadder.Api/BluePrism.WordLadder.Api.csproj
+  last_updated_by: Eduardo Barbosa
+  last_updated_on: 2021-04-09 23:13:27.000000000 Z
+- name: ASP.NET Core
+  description: A cross-platform .NET framework for building modern cloud-based web
+    applications on Windows, Mac, or Linux
+  website_url: docs.microsoft.com/en-us/aspnet/core/
+  version: '5.0'
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Frameworks (Full Stack)
+  image_url: https://img.stackshare.io/service/11331/asp.net-core.png
+  detection_source_url: https://github.com/ebbarbosa/BluePrism.WordLadder/blob/master/src/BluePrism.WordLadder.Api/BluePrism.WordLadder.Api.csproj
+  detection_source: src/BluePrism.WordLadder.Api/BluePrism.WordLadder.Api.csproj
+  last_updated_by: Eduardo Barbosa
+  last_updated_on: 2021-04-09 23:13:27.000000000 Z
+- name: Docker
+  description: Enterprise Container Platform for High-Velocity Innovation.
+  website_url: https://www.docker.com/
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Virtual Machine Platforms & Containers
+  image_url: https://img.stackshare.io/service/586/n4u37v9t_400x400.png
+  detection_source_url: https://github.com/ebbarbosa/BluePrism.WordLadder
+  detection_source: Repo Metadata
+- name: Git
+  description: Fast, scalable, distributed revision control system
+  website_url: http://git-scm.com/
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Version Control System
+  image_url: https://img.stackshare.io/service/1046/git.png
+  detection_source_url: https://github.com/ebbarbosa/BluePrism.WordLadder
+  detection_source: Repo Metadata
+- name: Ninject
+  description: The ninja of .net dependency injectors
+  website_url: http://www.ninject.org
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Game Development
+  image_url: https://img.stackshare.io/service/3173/default_85e419b9c60b158340e534d5006d949015ec16e4.png
+  detection_source_url: https://github.com/ebbarbosa/BluePrism.WordLadder/blob/master/src/BluePrism.WordLadder/BluePrism.WordLadder.csproj
+  detection_source: src/BluePrism.WordLadder/BluePrism.WordLadder.csproj
+  last_updated_by: Eduardo
+  last_updated_on: 2021-03-28 15:01:01.000000000 Z
+- name: NuGet
+  description: The package manager for .NET
+  website_url: https://www.nuget.org/
+  open_source: false
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Package Managers
+  image_url: https://img.stackshare.io/service/2637/6I3oEOP4_400x400.jpg
+  detection_source_url: https://github.com/ebbarbosa/BluePrism.WordLadder/blob/master/src/BluePrism.WordLadder/BluePrism.WordLadder.csproj
+  detection_source: src/BluePrism.WordLadder/BluePrism.WordLadder.csproj
+  last_updated_by: Eduardo Barbosa
+  last_updated_on: 2021-03-20 22:56:52.000000000 Z
+- name: Visual Studio
+  description: State-of-the-art tools and services that you can use to create great
+    apps for devices, the cloud, and everything in between.
+  website_url: http://msdn.microsoft.com/en-us/vstudio/aa718325.aspx
+  open_source: false
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Integrated Development Environment
+  image_url: https://img.stackshare.io/service/1451/SR2hUhQN.png
+  detection_source_url: https://github.com/ebbarbosa/BluePrism.WordLadder/blob/master/src/BluePrism.WordLadder.sln
+  detection_source: src/BluePrism.WordLadder.sln
+  last_updated_by: Eduardo
+  last_updated_on: 2021-03-21 01:35:36.000000000 Z
+- name: xUnit
+  description: An open source, community-focused unit testing tool
+  website_url: http://xunit.github.io/
+  version: 2.4.1
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Testing Frameworks
+  image_url: https://img.stackshare.io/service/3077/ca5a327feb49ddfe1f4b11548907e5a1_400x400.png
+  detection_source_url: https://github.com/ebbarbosa/BluePrism.WordLadder/blob/master/src/BluePrism.WordLadder.Test/BluePrism.WordLadder.Test.csproj
+  detection_source: src/BluePrism.WordLadder.Test/BluePrism.WordLadder.Test.csproj
+  last_updated_by: Eduardo Barbosa
+  last_updated_on: 2021-03-20 22:56:52.000000000 Z
+- name: FluentAssertions
+  description: A very extensive set of extension methods that allow you to more naturally
+    specify the expected outcome of a TDD or BDD-style unit tests
+  package_url: https://www.nuget.org/FluentAssertions
+  version: 5.10.3
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/13059/default_ed36ff3c005af695725e05bb15ea5b1f03de31f3.png
+  detection_source_url: https://github.com/ebbarbosa/BluePrism.WordLadder/blob/master/src/BluePrism.WordLadder.Test/BluePrism.WordLadder.Test.csproj
+  detection_source: src/BluePrism.WordLadder.Test/BluePrism.WordLadder.Test.csproj
+  last_updated_by: Eduardo
+  last_updated_on: 2021-03-21 01:35:36.000000000 Z
+- name: NSubstitute
+  description: NSubstitute is a friendly substitute for .NET mocking libraries
+  package_url: https://www.nuget.org/NSubstitute
+  version: 4.2.2
+  license: BSD-3-Clause
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/13290/default_f1d03070d16050375185746648c3b260664eace4.png
+  detection_source_url: https://github.com/ebbarbosa/BluePrism.WordLadder/blob/master/src/BluePrism.WordLadder.Test/BluePrism.WordLadder.Test.csproj
+  detection_source: src/BluePrism.WordLadder.Test/BluePrism.WordLadder.Test.csproj
+  last_updated_by: Eduardo
+  last_updated_on: 2021-03-24 01:45:22.000000000 Z
+- name: Swashbuckle.AspNetCore
+  description: Swagger tools for documenting APIs built on ASP.NET Core
+  package_url: https://www.nuget.org/Swashbuckle.AspNetCore
+  version: 5.6.3
+  license: BSD-3-Clause
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/12981/default_aa8a6e377c22dbeff795489a5ab127b1d597b5ed.png
+  detection_source_url: https://github.com/ebbarbosa/BluePrism.WordLadder/blob/master/src/BluePrism.WordLadder.Api/BluePrism.WordLadder.Api.csproj
+  detection_source: src/BluePrism.WordLadder.Api/BluePrism.WordLadder.Api.csproj
+  last_updated_by: Eduardo Barbosa
+  last_updated_on: 2021-04-09 23:13:27.000000000 Z
+- name: xunit.runner.visualstudio
+  description: Visual Studio 2012+ Test Explorer runner for the xUnit.net framework
+  package_url: https://www.nuget.org/xunit.runner.visualstudio
+  version: 2.4.3
+  license: Other
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: NuGet Packages
+  image_url: https://img.stackshare.io/package/13260/default_d2db5a200c4fe2d08cbdb2174cc230708973870b.png
+  detection_source_url: https://github.com/ebbarbosa/BluePrism.WordLadder/blob/master/src/BluePrism.WordLadder.Test/BluePrism.WordLadder.Test.csproj
+  detection_source: src/BluePrism.WordLadder.Test/BluePrism.WordLadder.Test.csproj
+  last_updated_by: Eduardo
+  last_updated_on: 2021-03-21 01:35:36.000000000 Z
